@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <declare-styleable name="LeanbackGuidedStepTheme">
+        <attr format="reference" name="guidedStepTheme"/>
+        <attr format="float" name="guidedStepHeightWeight"/>
+        <attr format="float" name="guidedStepKeyline"/>
+        <attr format="boolean" name="guidedStepThemeFlag"/>
+        <attr format="reference|color" name="guidedStepBackground"/>
+        <attr format="reference" name="guidedStepImeAppearingAnimation"/>
+        <attr format="reference" name="guidedStepImeDisappearingAnimation"/>
+        <attr format="reference" name="guidanceContainerStyle"/>
+        <attr format="reference" name="guidanceTitleStyle"/>
+        <attr format="reference" name="guidanceDescriptionStyle"/>
+        <attr format="reference" name="guidanceBreadcrumbStyle"/>
+        <attr format="reference" name="guidanceIconStyle"/>
+        <attr format="reference" name="guidedActionsSelectorDrawable"/>
+        <attr format="dimension|reference" name="guidedActionsElevation"/>
+        <attr format="reference" name="guidedActionsBackground"/>
+        <attr format="reference" name="guidedActionsBackgroundDark"/>
+        <attr format="reference" name="guidedActionsListStyle"/>
+        <attr format="reference" name="guidedSubActionsListStyle"/>
+        <attr format="reference" name="guidedButtonActionsListStyle"/>
+        <attr format="reference" name="guidedActionItemContainerStyle"/>
+        <attr format="reference" name="guidedActionItemCheckmarkStyle"/>
+        <attr format="reference" name="guidedActionItemIconStyle"/>
+        <attr format="reference" name="guidedActionItemContentStyle"/>
+        <attr format="reference" name="guidedActionItemTitleStyle"/>
+        <attr format="reference" name="guidedActionItemDescriptionStyle"/>
+        <attr format="reference" name="guidedActionItemChevronStyle"/>
+        <attr format="reference" name="guidedActionPressedAnimation"/>
+        <attr format="reference" name="guidedActionUnpressedAnimation"/>
+        <attr format="reference" name="guidedActionEnabledChevronAlpha"/>
+        <attr format="reference" name="guidedActionDisabledChevronAlpha"/>
+        <attr format="reference" name="guidedActionContentWidthWeight"/>
+        <attr format="reference" name="guidedActionContentWidthWeightTwoPanels"/>
+        <attr format="reference" name="guidedButtonActionsWidthWeight"/>
+        <attr format="reference" name="guidedActionTitleMinLines"/>
+        <attr format="reference" name="guidedActionTitleMaxLines"/>
+        <attr format="reference" name="guidedActionDescriptionMinLines"/>
+        <attr format="reference" name="guidedActionVerticalPadding"/>
+        <attr format="reference" name="guidedActionsContainerStyle"/>
+        <attr format="reference" name="guidedActionsSelectorStyle"/>
+        <attr format="reference" name="guidedStepEntryAnimation"/>
+        <attr format="reference" name="guidedStepExitAnimation"/>
+        <attr format="reference" name="guidedStepReentryAnimation"/>
+        <attr format="reference" name="guidedStepReturnAnimation"/>
+        <attr format="reference" name="guidanceEntryAnimation"/>
+        <attr format="reference" name="guidedActionsEntryAnimation"/>
+        <attr format="reference" name="guidedActionsSelectorShowAnimation"/>
+        <attr format="reference" name="guidedActionsSelectorHideAnimation"/>
+        <attr format="reference" name="guidedActionCheckedAnimation"/>
+        <attr format="reference" name="guidedActionUncheckedAnimation"/>
+        <attr format="reference" name="guidedActionContentWidth"/>
+        <attr format="reference" name="guidedActionContentWidthNoIcon"/>
+    </declare-styleable>
+    <declare-styleable name="LeanbackOnboardingTheme">
+        <attr format="reference" name="onboardingTheme"/>
+        <attr format="reference" name="onboardingHeaderStyle"/>
+        <attr format="reference" name="onboardingTitleStyle"/>
+        <attr format="reference" name="onboardingDescriptionStyle"/>
+        <attr format="reference" name="onboardingNavigatorContainerStyle"/>
+        <attr format="reference" name="onboardingPageIndicatorStyle"/>
+        <attr format="reference" name="onboardingStartButtonStyle"/>
+        <attr format="reference" name="onboardingLogoStyle"/>
+        <attr format="reference" name="onboardingMainIconStyle"/>
+    </declare-styleable>
+    <declare-styleable name="LeanbackTheme">
+        <attr format="dimension" name="browsePaddingStart"/>
+        <attr format="dimension" name="browsePaddingEnd"/>
+        <attr format="dimension" name="browsePaddingTop"/>
+        <attr format="dimension" name="browsePaddingBottom"/>
+        <attr format="dimension" name="browseRowsMarginStart"/>
+        <attr format="dimension" name="browseRowsMarginTop"/>
+        <attr format="dimension" name="browseRowsFadingEdgeLength"/>
+        <attr format="reference" name="browseTitleTextStyle"/>
+        <attr format="reference" name="browseTitleIconStyle"/>
+        <attr format="reference" name="browseTitleViewStyle"/>
+        <attr format="reference" name="browseTitleViewLayout"/>
+        <attr format="reference" name="headersVerticalGridStyle"/>
+        <attr format="reference" name="headerStyle"/>
+        <attr format="reference" name="sectionHeaderStyle"/>
+        <attr format="reference" name="rowsVerticalGridStyle"/>
+        <attr format="reference" name="rowHorizontalGridStyle"/>
+        <attr format="reference" name="rowHeaderStyle"/>
+        <attr format="reference" name="rowHeaderDescriptionStyle"/>
+        <attr format="reference" name="rowHeaderDockStyle"/>
+        <attr format="reference" name="rowHoverCardTitleStyle"/>
+        <attr format="reference" name="rowHoverCardDescriptionStyle"/>
+        <attr format="reference" name="baseCardViewStyle"/>
+        <attr format="reference" name="imageCardViewStyle"/>
+        <attr format="reference" name="imageCardViewImageStyle"/>
+        <attr format="reference" name="imageCardViewTitleStyle"/>
+        <attr format="reference" name="imageCardViewContentStyle"/>
+        <attr format="reference" name="imageCardViewBadgeStyle"/>
+        <attr format="reference" name="imageCardViewInfoAreaStyle"/>
+        <attr format="reference" name="detailsDescriptionTitleStyle"/>
+        <attr format="reference" name="detailsDescriptionSubtitleStyle"/>
+        <attr format="reference" name="detailsDescriptionBodyStyle"/>
+        <attr format="reference" name="detailsActionButtonStyle"/>
+        <attr format="dimension" name="playbackPaddingStart"/>
+        <attr format="dimension" name="playbackPaddingEnd"/>
+        <attr format="dimension" name="playbackMediaItemPaddingStart"/>
+        <attr format="reference" name="playbackMediaListHeaderStyle"/>
+        <attr format="reference" name="playbackMediaItemRowStyle"/>
+        <attr format="reference" name="playbackMediaItemSeparatorStyle"/>
+        <attr format="reference" name="playbackMediaListHeaderTitleStyle"/>
+        <attr format="reference" name="playbackMediaItemDetailsStyle"/>
+        <attr format="reference" name="playbackMediaItemNumberViewFlipperStyle"/>
+        <attr format="reference" name="playbackMediaItemNumberViewFlipperLayout"/>
+        <attr format="reference" name="playbackMediaItemNumberStyle"/>
+        <attr format="reference" name="playbackMediaItemNameStyle"/>
+        <attr format="reference" name="playbackMediaItemDurationStyle"/>
+        <attr format="reference" name="playbackControlsButtonStyle"/>
+        <attr format="reference" name="playbackControlButtonLabelStyle"/>
+        <attr format="reference" name="playbackControlsTimeStyle"/>
+        <attr format="reference" name="itemsVerticalGridStyle"/>
+        <attr format="reference" name="errorMessageStyle"/>
+        <attr format="reference|color" name="defaultBrandColor"/>
+        <attr format="reference|color" name="defaultBrandColorDark"/>
+        <attr format="reference|color" name="defaultSearchColor"/>
+        <attr format="reference|color" name="defaultSearchIconColor"/>
+        <attr format="reference|color" name="defaultSearchBrightColor"/>
+        <attr format="reference|color" name="defaultSectionHeaderColor"/>
+        <attr format="reference" name="searchOrbViewStyle"/>
+        <attr format="reference" name="defaultSearchIcon"/>
+        <attr format="reference|color" name="playbackProgressPrimaryColor"/>
+        <attr format="reference|color" name="playbackControlsIconHighlightColor"/>
+        <attr format="reference" name="playbackControlsActionIcons"/>
+        <attr format="color" name="overlayDimMaskColor"/>
+        <attr format="fraction" name="overlayDimActiveLevel"/>
+        <attr format="fraction" name="overlayDimDimmedLevel"/>
+    </declare-styleable>
+    <declare-styleable name="PagingIndicator">
+        <attr format="reference" name="lbDotRadius"/>
+        <attr format="reference" name="arrowRadius"/>
+        <attr format="reference" name="dotToDotGap"/>
+        <attr format="reference" name="dotToArrowGap"/>
+        <attr format="reference" name="dotBgColor"/>
+        <attr format="reference" name="arrowBgColor"/>
+    </declare-styleable>
+    <declare-styleable name="lbBaseCardView">
+        <attr format="reference|color" name="cardForeground"/>
+        <attr format="reference|color" name="cardBackground"/>
+        <attr format="enum" name="cardType">
+
+            <enum name="mainOnly" value="0"/>
+
+            <enum name="infoOver" value="1"/>
+
+            <enum name="infoUnder" value="2"/>
+
+            <enum name="infoUnderWithExtra" value="3"/>
+        </attr>
+        <attr format="enum" name="infoVisibility">
+
+            <enum name="always" value="0"/>
+
+            <enum name="activated" value="1"/>
+
+            <enum name="selected" value="2"/>
+        </attr>
+        <attr format="enum" name="extraVisibility">
+
+            <enum name="always" value="0"/>
+
+            <enum name="activated" value="1"/>
+
+            <enum name="selected" value="2"/>
+        </attr>
+        <attr format="integer" name="selectedAnimationDelay"/>
+        <attr format="integer" name="selectedAnimationDuration"/>
+        <attr format="integer" name="activatedAnimationDuration"/>
+    </declare-styleable>
+    <declare-styleable name="lbBaseCardView_Layout">
+        <attr format="enum" name="layout_viewType">
+
+            <enum name="main" value="0"/>
+
+            <enum name="info" value="1"/>
+
+            <enum name="extra" value="2"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="lbBaseGridView">
+        <attr format="boolean" name="focusOutFront"/>
+        <attr format="boolean" name="focusOutEnd"/>
+        <attr format="boolean" name="focusOutSideStart"/>
+        <attr format="boolean" name="focusOutSideEnd"/>
+        <attr format="dimension" name="horizontalMargin"/>
+        <attr format="dimension" name="verticalMargin"/>
+        <attr name="android:horizontalSpacing"/>
+        <attr name="android:verticalSpacing"/>
+        <attr name="android:gravity"/>
+    </declare-styleable>
+    <declare-styleable name="lbDatePicker">
+        <attr name="android:minDate"/>
+        <attr name="android:maxDate"/>
+        <attr format="string" name="datePickerFormat"/>
+    </declare-styleable>
+    <declare-styleable name="lbHorizontalGridView">
+        <attr format="dimension" name="rowHeight">
+            <enum name="wrap_content" value="-2"/>
+        </attr>
+        <attr format="integer" name="numberOfRows"/>
+    </declare-styleable>
+    <declare-styleable name="lbImageCardView">
+        <attr format="reference|color" name="infoAreaBackground"/>
+        <attr name="lbImageCardViewType">
+            <flag name="Title" value="1"/>
+            <flag name="Content" value="2"/>
+            <flag name="IconOnRight" value="4"/>
+            <flag name="IconOnLeft" value="8"/>
+
+            <flag name="ImageOnly" value="0"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="lbPlaybackControlsActionIcons">
+        <attr format="reference" name="play"/>
+        <attr format="reference" name="pause"/>
+        <attr format="reference" name="fast_forward"/>
+        <attr format="reference" name="rewind"/>
+        <attr format="reference" name="skip_next"/>
+        <attr format="reference" name="skip_previous"/>
+        <attr format="reference" name="thumb_up_outline"/>
+        <attr format="reference" name="thumb_up"/>
+        <attr format="reference" name="thumb_down_outline"/>
+        <attr format="reference" name="thumb_down"/>
+        <attr format="reference" name="repeat"/>
+        <attr format="reference" name="repeat_one"/>
+        <attr format="reference" name="shuffle"/>
+        <attr format="reference" name="high_quality"/>
+        <attr format="reference" name="closed_captioning"/>
+        <attr format="reference" name="picture_in_picture"/>
+    </declare-styleable>
+    <declare-styleable name="lbResizingTextView">
+        <attr name="resizeTrigger">
+
+            <flag name="maxLines" value="0x01"/>
+        </attr>
+        <attr format="dimension" name="resizedTextSize"/>
+        <attr format="boolean" name="maintainLineSpacing"/>
+        <attr format="dimension" name="resizedPaddingAdjustmentTop"/>
+        <attr format="dimension" name="resizedPaddingAdjustmentBottom"/>
+    </declare-styleable>
+    <declare-styleable name="lbSearchOrbView">
+        <attr format="reference" name="searchOrbIcon"/>
+        <attr format="reference|color" name="searchOrbIconColor"/>
+        <attr format="reference|color" name="searchOrbColor"/>
+        <attr format="reference|color" name="searchOrbBrightColor"/>
+    </declare-styleable>
+    <declare-styleable name="lbSlide">
+        <attr name="lb_slideEdge">
+
+            <enum name="left" value="0x03"/>
+
+            <enum name="top" value="0x30"/>
+
+            <enum name="right" value="0x05"/>
+
+            <enum name="bottom" value="0x50"/>
+
+            <enum name="start" value="0x00800003"/>
+
+            <enum name="end" value="0x00800005"/>
+        </attr>
+        <attr name="android:duration"/>
+        <attr name="android:startDelay"/>
+        <attr name="android:interpolator"/>
+    </declare-styleable>
+    <declare-styleable name="lbTimePicker">
+        <attr format="boolean" name="is24HourFormat"/>
+        <attr format="boolean" name="useCurrentTime"/>
+    </declare-styleable>
+    <declare-styleable name="lbVerticalGridView">
+        <attr format="dimension" name="columnWidth">
+            <enum name="wrap_content" value="-2"/>
+        </attr>
+        <attr format="integer" name="numberOfColumns"/>
+    </declare-styleable>
+    <item name="lb_control_closed_captioning" type="id"/>
+    <item name="lb_control_fast_forward" type="id"/>
+    <item name="lb_control_fast_rewind" type="id"/>
+    <item name="lb_control_high_quality" type="id"/>
+    <item name="lb_control_more_actions" type="id"/>
+    <item name="lb_control_picture_in_picture" type="id"/>
+    <item name="lb_control_play_pause" type="id"/>
+    <item name="lb_control_repeat" type="id"/>
+    <item name="lb_control_shuffle" type="id"/>
+    <item name="lb_control_skip_next" type="id"/>
+    <item name="lb_control_skip_previous" type="id"/>
+    <item name="lb_control_thumbs_down" type="id"/>
+    <item name="lb_control_thumbs_up" type="id"/>
+    <item name="lb_focus_animator" type="id"/>
+    <item name="lb_guidedstep_background" type="id"/>
+    <item name="lb_parallax_source" type="id"/>
+    <item name="lb_shadow_impl" type="id"/>
+    <item name="lb_slide_transition_value" type="id"/>
+    <item name="transitionPosition" type="id"/>
+
+    <item name="lb_view_data_tag" type="id"/>
+    <item name="lb_view_holder_tag" type="id"/>
+</resources>
