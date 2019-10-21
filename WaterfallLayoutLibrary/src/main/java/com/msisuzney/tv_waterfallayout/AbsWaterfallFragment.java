@@ -43,7 +43,7 @@ public abstract class AbsWaterfallFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAdapter = initAdapter();
         if (mAdapter == null) {
-            throw new NullPointerException("mAdapter is null");
+            throw new NullPointerException("mAdapter must not be null");
         }
         mVerticalGridView = view.findViewById(R.id.vgv);
         mVerticalGridView.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
@@ -63,8 +63,7 @@ public abstract class AbsWaterfallFragment extends Fragment {
     }
 
     protected StateChangeObservable initStateChangeObservable() {
-        return new StateChangeObservable<StateChangedObserver>() {
-        };
+        return new StateChangeObservable<StateChangedObserver>(){};
     }
 
 

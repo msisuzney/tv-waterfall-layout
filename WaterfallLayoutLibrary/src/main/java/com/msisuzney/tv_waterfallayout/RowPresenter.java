@@ -1,5 +1,6 @@
 package com.msisuzney.tv_waterfallayout;
 
+import android.graphics.Color;
 import android.support.v17.leanback.R;
 import android.support.v17.leanback.widget.Presenter;
 import android.support.v17.leanback.widget.PresenterSelector;

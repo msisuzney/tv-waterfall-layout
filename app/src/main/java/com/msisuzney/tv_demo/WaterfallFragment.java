@@ -107,7 +107,7 @@ public class WaterfallFragment extends AbsRowWaterfallFragment implements OnItem
     }
 
     private void updateData(TabBean tabBean) {
-        //TabColumns中的位置大小只是比例，需要把TabColumn转换成实际像素ColumnData
+        //TabBean中的位置大小只是比例，需要把TabBean转换成实际像素ColumnData
 
         List<RowData> columnDataList = new ArrayList<>();
         //计算每个栏目中每个色块的绝对位置
@@ -133,7 +133,7 @@ public class WaterfallFragment extends AbsRowWaterfallFragment implements OnItem
                 TabBean.ResultBean.BlockListBean block = tabColumn.getBlockList().get(j);
                 int x = (int) (gridWH * block.getX());
 
-                int y = (int) (gridWH * block.getY());//+ block.getTopOffset();
+                int y = (int) (gridWH * block.getY());
                 if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {
                     y += COLUMN_TITLE_HEIGHT;
                 }

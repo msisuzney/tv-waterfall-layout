@@ -6,7 +6,7 @@ package com.msisuzney.tv_waterfallayout;
 public class BlockData {
     //具体的数据
     private Object data;
-    //位置大小
+    //位置和宽高
     private int x, y, width, height;
 
     public Object getData() {

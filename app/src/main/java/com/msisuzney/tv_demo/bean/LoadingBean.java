@@ -1,9 +1,6 @@
 package com.msisuzney.tv_demo.bean;
 
-/**
- * Created by xin1.chen
- * on 2019/7/29
- */
+
 public class LoadingBean {
     private String content;
 

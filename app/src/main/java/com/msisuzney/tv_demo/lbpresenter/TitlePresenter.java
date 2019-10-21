@@ -9,10 +9,6 @@ import android.widget.TextView;
 import com.msisuzney.tv_waterfallayout.R;
 
 
-/**
- * Created by xin1.chen
- * on 2019/7/25
- */
 public class TitlePresenter extends Presenter {
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent) {

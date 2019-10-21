@@ -24,7 +24,7 @@ public abstract class AbsRowWaterfallFragment extends AbsWaterfallFragment {
     public final ArrayObjectAdapter initAdapter() {
         PresenterSelector blockSelector = initBlockPresenterSelector();
         if (blockSelector == null) {
-            throw new RuntimeException("BlockPresenterSelector is null");
+            throw new RuntimeException("BlockPresenterSelector must not be null");
         }
         PresenterSelector otherPresenterSelector = initOtherPresenterSelector();
         RowPresenterWrapper mSelector = new RowPresenterWrapper(blockSelector);
