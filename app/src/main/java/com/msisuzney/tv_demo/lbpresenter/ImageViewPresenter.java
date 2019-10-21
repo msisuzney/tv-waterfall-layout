@@ -73,7 +73,7 @@ public class ImageViewPresenter extends Presenter {
             containerView.setOnFocusChangeListener((v, hasFocus) -> {
                 if (hasFocus) {
                     imageDock.setBackgroundColor(Color.RED);
-                    v.animate().scaleX(1.1f).scaleY(1.1f).setInterpolator(sOvershootInterpolator).setDuration(150).start();
+                    v.animate().scaleX(1.2f).scaleY(1.2f).setInterpolator(sOvershootInterpolator).setDuration(150).start();
                     v.bringToFront();
                 } else {
                     imageDock.setBackgroundResource(0);

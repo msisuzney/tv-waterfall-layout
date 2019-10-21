@@ -15,7 +15,7 @@ import java.util.List;
  * 运营位必须用{@link BlockData}提供x,y,width,height,以及使用{@link BlockData#setData(Object)} 设置运营位的数据
  * <br/>
  * <br/>
- * 如果瀑布流布局还有其他不是行的布局需要重写{@link AbsRowWaterfallFragment#initOtherPresenterSelector()} ()} 提供其他与行同级的布局位置
+ * 如果瀑布流布局还有其他不是行的布局需要重写{@link AbsRowWaterfallFragment#initOtherPresenterSelector()} ()} 提供其他与<strong>行</strong>同级的布局Presenter
  */
 public abstract class AbsRowWaterfallFragment extends AbsWaterfallFragment {
 

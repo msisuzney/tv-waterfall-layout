@@ -3,7 +3,7 @@
   "description": "成功执行",
   "result": [
     {
-      "columnTitle": "我是Title",
+      "columnTitle": "我是标题～",
       "columns": 28,
       "rows": 7,
       "blockList": [
@@ -17,13 +17,13 @@
         {
           "x": 14,
           "y": 0,
-          "w": 7,
+          "w": 8,
           "h": 7
         },
         {
-          "x": 21,
+          "x": 22,
           "y": 0,
-          "w": 7,
+          "w": 6,
           "h": 7
         }
       ]

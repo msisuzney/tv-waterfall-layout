@@ -4,14 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <com.msisuzney.tv_demo.view.TabPageIndicator
-        android:id="@+id/tabDock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+    <fragment
+        android:tag="test"
+        android:name="com.msisuzney.tv_demo.WaterfallFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabDock" />
+        android:background="@android:color/darker_gray" />
 </RelativeLayout>
