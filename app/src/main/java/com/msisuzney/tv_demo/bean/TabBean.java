@@ -5,6 +5,12 @@ import java.util.List;
 public class TabBean {
 
 
+    /**
+     * errcode : 0
+     * description : 成功执行
+     * result : [{"columnTitle":"我是标题～","columns":28,"rows":7,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":14,"h":7},{"x":14,"y":0,"w":8,"h":7},{"x":22,"y":0,"w":6,"h":7}]},{"columns":10,"rows":3,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":2,"h":3},{"x":2,"y":0,"w":2,"h":3},{"x":4,"y":0,"w":2,"h":3},{"x":6,"y":0,"w":2,"h":3},{"x":8,"y":0,"w":2,"h":3}]},{"type":1,"columns":10,"rows":2,"horizontalLayoutList":[{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""}]},{"columnTitle":"我是Title","columns":28,"rows":7,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":14,"h":7},{"x":14,"y":0,"w":7,"h":7},{"x":21,"y":0,"w":7,"h":7}]},{"columns":10,"rows":3,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":2,"h":3},{"x":2,"y":0,"w":2,"h":3},{"x":4,"y":0,"w":2,"h":3},{"x":6,"y":0,"w":2,"h":3},{"x":8,"y":0,"w":2,"h":3}]},{"columns":10,"rows":2,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":10,"h":2}]},{"columnTitle":"我是Title","columns":28,"rows":7,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":14,"h":7},{"x":14,"y":0,"w":7,"h":7},{"x":21,"y":0,"w":7,"h":7}]},{"columns":10,"rows":3,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":2,"h":3},{"x":2,"y":0,"w":2,"h":3},{"x":4,"y":0,"w":2,"h":3},{"x":6,"y":0,"w":2,"h":3},{"x":8,"y":0,"w":2,"h":3}]},{"columns":10,"rows":2,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":10,"h":2}]},{"columnTitle":"我是Title","columns":28,"rows":7,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":14,"h":7},{"x":14,"y":0,"w":7,"h":7},{"x":21,"y":0,"w":7,"h":7}]},{"columns":10,"rows":3,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":2,"h":3},{"x":2,"y":0,"w":2,"h":3},{"x":4,"y":0,"w":2,"h":3},{"x":6,"y":0,"w":2,"h":3},{"x":8,"y":0,"w":2,"h":3}]},{"columns":10,"rows":2,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":10,"h":2}]},{"columnTitle":"我是Title","columns":28,"rows":7,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":14,"h":7},{"x":14,"y":0,"w":7,"h":7},{"x":21,"y":0,"w":7,"h":7}]},{"columns":10,"rows":3,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":2,"h":3},{"x":2,"y":0,"w":2,"h":3},{"x":4,"y":0,"w":2,"h":3},{"x":6,"y":0,"w":2,"h":3},{"x":8,"y":0,"w":2,"h":3}]},{"columns":10,"rows":2,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":10,"h":2}]},{"columnTitle":"我是Title","columns":28,"rows":7,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":14,"h":7},{"x":14,"y":0,"w":7,"h":7},{"x":21,"y":0,"w":7,"h":7}]},{"columns":10,"rows":3,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":2,"h":3},{"x":2,"y":0,"w":2,"h":3},{"x":4,"y":0,"w":2,"h":3},{"x":6,"y":0,"w":2,"h":3},{"x":8,"y":0,"w":2,"h":3}]},{"columns":10,"rows":2,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":10,"h":2}]},{"columnTitle":"我是Title","columns":28,"rows":7,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":14,"h":7},{"x":14,"y":0,"w":7,"h":7},{"x":21,"y":0,"w":7,"h":7}]},{"columns":10,"rows":3,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":2,"h":3},{"x":2,"y":0,"w":2,"h":3},{"x":4,"y":0,"w":2,"h":3},{"x":6,"y":0,"w":2,"h":3},{"x":8,"y":0,"w":2,"h":3}]},{"columns":10,"rows":2,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":10,"h":2}]},{"columnTitle":"我是Title","columns":28,"rows":7,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":14,"h":7},{"x":14,"y":0,"w":7,"h":7},{"x":21,"y":0,"w":7,"h":7}]},{"columns":10,"rows":3,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":2,"h":3},{"x":2,"y":0,"w":2,"h":3},{"x":4,"y":0,"w":2,"h":3},{"x":6,"y":0,"w":2,"h":3},{"x":8,"y":0,"w":2,"h":3}]},{"columns":10,"rows":2,"absLayoutList":[{"posterUrl":"","x":0,"y":0,"w":10,"h":2}]}]
+     */
+
     private String errcode;
     private String description;
     private List<ResultBean> result;
@@ -34,16 +40,30 @@ public class TabBean {
     }
 
     public static class ResultBean {
-
+        /**
+         * columnTitle : 我是标题～
+         * columns : 28
+         * rows : 7
+         * absLayoutList : [{"posterUrl":"","x":0,"y":0,"w":14,"h":7},{"x":14,"y":0,"w":8,"h":7},{"x":22,"y":0,"w":6,"h":7}]
+         * type : 1
+         * horizontalLayoutList : [{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""},{"w":2,"h":2,"posterUrl":""}]
+         */
+        public static final int TYPE_HORIZONTAL_LAYOUT = 1;
+        public static final int TYPE_ABSOLUTE_LAYOUT = 0;
         private String columnTitle;
-        private List<BlockListBean> blockList;
         private int columns;
         private int rows;
+        private int type;
+        private List<AbsLayoutListBean> absLayoutList;
+        private List<HorizontalLayoutListBean> horizontalLayoutList;
 
         public String getColumnTitle() {
             return columnTitle;
         }
 
+        public void setColumnTitle(String columnTitle) {
+            this.columnTitle = columnTitle;
+        }
 
         public int getColumns() {
             return columns;
@@ -61,19 +81,38 @@ public class TabBean {
             this.rows = rows;
         }
 
-        public void setColumnTitle(String columnTitle) {
-            this.columnTitle = columnTitle;
+        public int getType() {
+            return type;
         }
 
-        public List<BlockListBean> getBlockList() {
-            return blockList;
+        public void setType(int type) {
+            this.type = type;
         }
 
-        public void setBlockList(List<BlockListBean> blockList) {
-            this.blockList = blockList;
+        public List<AbsLayoutListBean> getAbsLayoutList() {
+            return absLayoutList;
         }
 
-        public static class BlockListBean {
+        public void setAbsLayoutList(List<AbsLayoutListBean> absLayoutList) {
+            this.absLayoutList = absLayoutList;
+        }
+
+        public List<HorizontalLayoutListBean> getHorizontalLayoutList() {
+            return horizontalLayoutList;
+        }
+
+        public void setHorizontalLayoutList(List<HorizontalLayoutListBean> horizontalLayoutList) {
+            this.horizontalLayoutList = horizontalLayoutList;
+        }
+
+        public static class AbsLayoutListBean {
+            /**
+             * posterUrl :
+             * x : 0
+             * y : 0
+             * w : 14
+             * h : 7
+             */
 
             private String posterUrl;
             private int x;
@@ -120,8 +159,42 @@ public class TabBean {
             public void setH(int h) {
                 this.h = h;
             }
+        }
 
+        public static class HorizontalLayoutListBean {
+            /**
+             * w : 2
+             * h : 2
+             * posterUrl :
+             */
 
+            private int w;
+            private int h;
+            private String posterUrl;
+
+            public int getW() {
+                return w;
+            }
+
+            public void setW(int w) {
+                this.w = w;
+            }
+
+            public int getH() {
+                return h;
+            }
+
+            public void setH(int h) {
+                this.h = h;
+            }
+
+            public String getPosterUrl() {
+                return posterUrl;
+            }
+
+            public void setPosterUrl(String posterUrl) {
+                this.posterUrl = posterUrl;
+            }
         }
     }
 }

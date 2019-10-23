@@ -4,24 +4,25 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v17.leanback.widget.ArrayObjectAdapter;
-import android.support.v17.leanback.widget.Presenter;
 import android.support.v17.leanback.widget.PresenterSelector;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.msisuzney.tv_demo.bean.TabBean;
 import com.msisuzney.tv_demo.lbpresenter.BlockPresenterSelector;
 import com.msisuzney.tv_waterfallayout.AbsRowWaterfallFragment;
-import com.msisuzney.tv_waterfallayout.AbsWaterfallFragment;
-import com.msisuzney.tv_waterfallayout.BlockData;
 import com.msisuzney.tv_waterfallayout.OnItemKeyListener;
-import com.msisuzney.tv_waterfallayout.RowData;
 import com.msisuzney.tv_waterfallayout.StateChangeObservable;
+import com.msisuzney.tv_waterfallayout.bean.AbsLayoutCollection;
+import com.msisuzney.tv_waterfallayout.bean.AbsLayoutItem;
+import com.msisuzney.tv_waterfallayout.bean.Collection;
+import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutCollection;
+import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutItem;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,18 +33,15 @@ import java.util.List;
 
 public class WaterfallFragment extends AbsRowWaterfallFragment implements OnItemKeyListener {
 
-    //对应xml文件中的给焦点预留的padding
-    private static int FOCUS_PADDING = 6;
     //色块间距 = FOCUS_PADDING * 2（焦点的预留位置）+ COLUMN_ITEM_PADDING * 2 = 48
-    public static int COLUMN_ITEM_PADDING = 18;
+    public static int COLUMN_ITEM_PADDING = 10;
     public static int COLUMN_TITLE_HEIGHT = 100;
     //栏目左右的margin,实际要扣除色块间距
-    public static int COLUMN_LEFT_RIGHT_MARGIN = 120 - FOCUS_PADDING - COLUMN_ITEM_PADDING;
-    //视频栏目,title，没有COLUMN_ITEM_PADDING
-    public static int COLUMN_LEFT_RIGHT_MARGIN2 = 120 - FOCUS_PADDING;
-    private static int COLUMN_WIDTH = 1920 - 2 * COLUMN_LEFT_RIGHT_MARGIN; // = 1728
+    public static int COLUMN_LEFT_RIGHT_MARGIN = 120 - COLUMN_ITEM_PADDING;
+    //title布局，没有COLUMN_ITEM_PADDING
+    public static int COLUMN_LEFT_RIGHT_MARGIN2 = 120;
+    public static int COLUMN_WIDTH = 1920 - 2 * COLUMN_LEFT_RIGHT_MARGIN; // = 1728
 
-    //    private int tTotalPages = 4;
     private MyStateChangeObservable observable;
 
     @Override
@@ -76,19 +74,19 @@ public class WaterfallFragment extends AbsRowWaterfallFragment implements OnItem
     public void onResume() {
         super.onResume();
         try {
-            new LoadDataAsyncTask(this).execute(getContext().getAssets().open("tab1.json"));
+            new LoadDataAsyncTask(this).execute(getContext().getAssets().open("data.json"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    //    @Override
+//    @Override
 //    protected PresenterSelector initOtherPresenterSelector() {
 //        return new PresenterSelector() {
 //            @Override
 //            public Presenter getPresenter(Object item) {
-//                if (item instanceof LoadingBean) {
-//                    return new LoadingViewPresenter(null);
+//                if (item instanceof TabBean.ResultBean.HorizontalListBean) {
+//                    return new HorizontalRVPresenter(null);
 //                }
 //                return null;
 //            }
@@ -98,7 +96,7 @@ public class WaterfallFragment extends AbsRowWaterfallFragment implements OnItem
 
     @Override
     public void onClick(Object item) {
-
+        Toast.makeText(getContext().getApplicationContext(), "click", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -107,61 +105,83 @@ public class WaterfallFragment extends AbsRowWaterfallFragment implements OnItem
     }
 
     private void updateData(TabBean tabBean) {
-        //TabBean中的位置大小只是比例，需要把TabBean转换成实际像素ColumnData
+        //TabBean中的位置大小只是比例，需要把TabBean转换成实际像素
 
-        List<RowData> columnDataList = new ArrayList<>();
+        List<Collection> columnCollections = new ArrayList<>();
         //计算每个栏目中每个色块的绝对位置
         for (int i = 0; i < tabBean.getResult().size(); i++) {
             TabBean.ResultBean tabColumn = tabBean.getResult().get(i);
-            RowData columnData = new RowData();
-            List<BlockData> blockDataList = new ArrayList<>();
-            //网格的实际宽高
-            float gridWH = (float) (COLUMN_WIDTH * 1.0 / tabColumn.getColumns());
-            int height = (int) (gridWH * tabColumn.getRows());
 
-            if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {
-                height += COLUMN_TITLE_HEIGHT;
-                BlockData blockData = new BlockData();
-                blockData.setData(tabColumn.getColumnTitle());
-                blockData.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-                blockData.setHeight(COLUMN_TITLE_HEIGHT);
-                blockData.setX(COLUMN_LEFT_RIGHT_MARGIN2);
-                blockData.setY(COLUMN_ITEM_PADDING);
-                blockDataList.add(blockData);
-            }
-            for (int j = 0; j < tabColumn.getBlockList().size(); j++) {
-                TabBean.ResultBean.BlockListBean block = tabColumn.getBlockList().get(j);
-                int x = (int) (gridWH * block.getX());
-
-                int y = (int) (gridWH * block.getY());
-                if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {
-                    y += COLUMN_TITLE_HEIGHT;
+            if (tabColumn.getType() == TabBean.ResultBean.TYPE_HORIZONTAL_LAYOUT) {
+                //网格的实际宽高
+                float gridWH = (float) (COLUMN_WIDTH * 1.0 / tabColumn.getColumns());
+                int height = (int) (gridWH * tabColumn.getRows());
+                HorizontalLayoutCollection horizontalLayoutCollection = new HorizontalLayoutCollection();
+                horizontalLayoutCollection.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+                horizontalLayoutCollection.setHeight(height);
+                List<HorizontalLayoutItem> items = new ArrayList<>();
+                for (int j = 0; j < tabColumn.getHorizontalLayoutList().size(); j++) {
+                    HorizontalLayoutItem item = new HorizontalLayoutItem();
+                    TabBean.ResultBean.HorizontalLayoutListBean bean = tabColumn.getHorizontalLayoutList().get(j);
+                    int w = (int) (gridWH * bean.getW());
+                    int h = (int) (gridWH * bean.getH());
+                    item.setHeight(h);
+                    item.setWidth(w);
+                    item.setData(bean);
+                    items.add(item);
                 }
-                int w = (int) (gridWH * (block.getW()));
-                int h = (int) (gridWH * (block.getH()));
-                x += COLUMN_LEFT_RIGHT_MARGIN;
+                horizontalLayoutCollection.setItems(items);
+                columnCollections.add(horizontalLayoutCollection);
+            } else {
+                AbsLayoutCollection absLayoutCollection = new AbsLayoutCollection();
+                List<AbsLayoutItem> items = new ArrayList<>();
+                //网格的实际宽高
+                float gridWH = (float) (COLUMN_WIDTH * 1.0 / tabColumn.getColumns());
+                int height = (int) (gridWH * tabColumn.getRows());
+
+                if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {
+                    height += COLUMN_TITLE_HEIGHT;
+                    AbsLayoutItem item = new AbsLayoutItem();
+                    item.setData(tabColumn.getColumnTitle());
+                    item.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+                    item.setHeight(COLUMN_TITLE_HEIGHT);
+                    item.setX(COLUMN_LEFT_RIGHT_MARGIN2);
+                    item.setY(COLUMN_ITEM_PADDING);
+                    items.add(item);
+                }
+                for (int j = 0; j < tabColumn.getAbsLayoutList().size(); j++) {
+                    TabBean.ResultBean.AbsLayoutListBean block = tabColumn.getAbsLayoutList().get(j);
+                    int x = (int) (gridWH * block.getX());
+                    int y = (int) (gridWH * block.getY());
+                    if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {
+                        y += COLUMN_TITLE_HEIGHT;
+                    }
+                    int w = (int) (gridWH * (block.getW()));
+                    int h = (int) (gridWH * (block.getH()));
+                    x += COLUMN_LEFT_RIGHT_MARGIN;
 
 
-                BlockData blockData = new BlockData();
-                blockData.setX(x);
-                blockData.setY(y);
-                blockData.setWidth(w);
-                blockData.setHeight(h);
-                blockData.setData(block);
-                blockDataList.add(blockData);
+                    AbsLayoutItem item = new AbsLayoutItem();
+                    item.setX(x);
+                    item.setY(y);
+                    item.setWidth(w);
+                    item.setHeight(h);
+                    item.setData(block);
+                    items.add(item);
+                }
+
+                absLayoutCollection.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+                absLayoutCollection.setHeight(height);
+                absLayoutCollection.setItems(items);
+                columnCollections.add(absLayoutCollection);
             }
-
-            columnData.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-            columnData.setHeight(height);
-            columnData.setBlocks(blockDataList);
-            columnDataList.add(columnData);
         }
 
 
         postRefreshRunnable(() -> {
             if (isAdded()) {
                 int size = size();
-                addAll(size, columnDataList);
+                addAll(size, columnCollections);
             }
         });
     }
