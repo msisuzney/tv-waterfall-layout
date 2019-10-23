@@ -1,25 +1,58 @@
 package com.msisuzney.tv_waterfallayout.presenter;
 
+import android.graphics.Color;
 import android.support.v17.leanback.R;
 import android.support.v17.leanback.widget.ArrayObjectAdapter;
 import android.support.v17.leanback.widget.HorizontalGridView;
 import android.support.v17.leanback.widget.ItemBridgeAdapter;
 import android.support.v17.leanback.widget.Presenter;
 import android.support.v17.leanback.widget.PresenterSelector;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutCollection;
+import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutItem;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class HorizontalLayoutRowPresenter extends Presenter {
-    private PresenterSelector blockPresenterSelector;
+    private Presenter itemDockPresenter;
 
     public HorizontalLayoutRowPresenter(PresenterSelector blockPresenterSelector) {
-        this.blockPresenterSelector = blockPresenterSelector;
+        itemDockPresenter = new Presenter() {
+            @Override
+            public ViewHolder onCreateViewHolder(ViewGroup parent) {
+                FrameLayout dockView = new FrameLayout(parent.getContext());
+                return new ViewHolder(dockView);
+            }
+
+            @Override
+            public void onBindViewHolder(ViewHolder viewHolder, Object item) {
+                HorizontalLayoutItem horizontalLayoutItem = (HorizontalLayoutItem) item;
+                ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(horizontalLayoutItem.getWidth(), horizontalLayoutItem.getHeight());
+                viewHolder.view.setLayoutParams(lp);
+                Presenter itemPresenter = blockPresenterSelector.getPresenter(horizontalLayoutItem.getData());
+                ViewHolder vh = itemPresenter.onCreateViewHolder((ViewGroup) viewHolder.view);
+                itemPresenter.onBindViewHolder(vh, horizontalLayoutItem.getData());
+                viewHolder.view.setTag(R.id.lb_view_data_tag, horizontalLayoutItem.getData());
+                viewHolder.view.setTag(R.id.lb_view_holder_tag, viewHolder);
+                ((ViewGroup) viewHolder.view).addView(vh.view);
+            }
+
+            @Override
+            public void onUnbindViewHolder(ViewHolder viewHolder) {
+                Log.d("HLRP", "onUnbindViewHolder");
+                Object data = viewHolder.view.getTag(R.id.lb_view_data_tag);
+                ViewHolder vh = (ViewHolder) viewHolder.view.getTag(R.id.lb_view_holder_tag);
+                Presenter presenter = blockPresenterSelector.getPresenter(data);
+                presenter.onUnbindViewHolder(vh);
+                viewHolder.view.setTag(R.id.lb_view_holder_tag, null);
+                viewHolder.view.setTag(R.id.lb_view_data_tag, null);
+                ((ViewGroup) viewHolder.view).removeAllViews();
+            }
+        };
     }
 
     @Override
@@ -35,20 +68,14 @@ public class HorizontalLayoutRowPresenter extends Presenter {
         HorizontalGridView horizontalGridView = itemViewHolder.getHorizontalGridView();
         ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(collection.getWidth(), collection.getHeight());
         horizontalGridView.setLayoutParams(lp);
-        ArrayObjectAdapter objectAdapter = new ArrayObjectAdapter(blockPresenterSelector);
+        ArrayObjectAdapter objectAdapter = new ArrayObjectAdapter(itemDockPresenter);
         ItemBridgeAdapter adapter = new ItemBridgeAdapter(objectAdapter);
         horizontalGridView.setAdapter(adapter);
-        List<Object> objects = new ArrayList<>();
-        for (int i = 0; i < collection.getItems().size(); i++) {
-            objects.add(collection.getItems().get(i).getData());
-        }
-        objectAdapter.addAll(0, objects);
+        objectAdapter.addAll(0, collection.getItems());
     }
 
     @Override
     public void onUnbindViewHolder(ViewHolder viewHolder) {
-        HorizontalItemViewHolder itemViewHolder = (HorizontalItemViewHolder) viewHolder;
-//        itemViewHolder.horizontalGridView
     }
 
 

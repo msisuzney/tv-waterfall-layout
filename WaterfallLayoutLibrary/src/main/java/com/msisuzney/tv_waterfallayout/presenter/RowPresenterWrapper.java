@@ -20,7 +20,7 @@ public class RowPresenterWrapper extends PresenterSelector {
     }
 
     /**
-     * 瀑布流中中不是栏目的选择器，比如加载更多的提示View
+     * 瀑布流中不是栏目的选择器，比如加载更多的提示View
      *
      * @param otherPresenterSelector
      */
