@@ -63,7 +63,8 @@ public abstract class AbsWaterfallFragment extends Fragment {
     }
 
     protected StateChangeObservable initStateChangeObservable() {
-        return new StateChangeObservable<StateChangedObserver>(){};
+        return new StateChangeObservable<StateChangedObserver>() {
+        };
     }
 
 
@@ -123,7 +124,6 @@ public abstract class AbsWaterfallFragment extends Fragment {
     protected void postRefreshRunnable(Runnable runnable) {
         mVerticalGridView.post(runnable);
     }
-
 
 
     private OnRowSelectedListener mOnRowSelectedListener;

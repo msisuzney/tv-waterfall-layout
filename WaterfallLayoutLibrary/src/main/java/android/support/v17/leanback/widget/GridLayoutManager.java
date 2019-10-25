@@ -233,7 +233,7 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
 
         @Override
         protected void onTargetFound(View targetView,
-                RecyclerView.State state, Action action) {
+                State state, Action action) {
             if (getScrollPosition(targetView, null, sTwoInts)) {
                 int dx, dy;
                 if (mOrientation == HORIZONTAL) {
@@ -416,8 +416,8 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
     int mOrientation = HORIZONTAL;
     private OrientationHelper mOrientationHelper = OrientationHelper.createHorizontalHelper(this);
 
-    RecyclerView.State mState;
-    RecyclerView.Recycler mRecycler;
+    State mState;
+    Recycler mRecycler;
 
     private static final Rect sTempRect = new Rect();
 
@@ -1862,7 +1862,7 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
-    public void removeAndRecycleAllViews(RecyclerView.Recycler recycler) {
+    public void removeAndRecycleAllViews(Recycler recycler) {
         if (TRACE) TraceCompat.beginSection("removeAndRecycleAllViews");
         if (DEBUG) Log.v(TAG, "removeAndRecycleAllViews " + getChildCount());
         for (int i = getChildCount() - 1; i >= 0; i--) {
@@ -1901,7 +1901,7 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
 
     @VisibleForTesting
     public static class OnLayoutCompleteListener {
-        public void onLayoutCompleted(RecyclerView.State state) {
+        public void onLayoutCompleted(State state) {
         }
     }
 
@@ -1917,7 +1917,7 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
 
     // Lays out items based on the current scroll position
     @Override
-    public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+    public void onLayoutChildren(Recycler recycler, State state) {
         if (DEBUG) {
             Log.v(getTag(), "layoutChildren start numRows " + mNumRows + " mScrollOffsetSecondary "
                     + mScrollOffsetSecondary + " mScrollOffsetPrimary " + mScrollOffsetPrimary
@@ -2077,7 +2077,7 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
-    public int scrollHorizontallyBy(int dx, Recycler recycler, RecyclerView.State state) {
+    public int scrollHorizontallyBy(int dx, Recycler recycler, State state) {
         if (DEBUG) Log.v(getTag(), "scrollHorizontallyBy " + dx);
         if (!mLayoutEnabled || !hasDoneFirstLayout()) {
             return 0;
@@ -2096,7 +2096,7 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
-    public int scrollVerticallyBy(int dy, Recycler recycler, RecyclerView.State state) {
+    public int scrollVerticallyBy(int dy, Recycler recycler, State state) {
         if (DEBUG) Log.v(getTag(), "scrollVerticallyBy " + dy);
         if (!mLayoutEnabled || !hasDoneFirstLayout()) {
             return 0;
@@ -3012,7 +3012,8 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
                 // no grid information, or no child, bail out.
                 return true;
             }
-            if ((movement == NEXT_ROW || movement == PREV_ROW) && mGrid.getNumRows() <= 1) {
+            //单列、行的Grid布局也不要返回，也执行下面的添加focusable view的方法，这样方便焦点换行
+            if ((movement == NEXT_ROW || movement == PREV_ROW) && /*mGrid.getNumRows() <= 1*/ mGrid.getNumRows() <= 0) {
                 // For single row, cannot navigate to previous/next row.
                 return true;
             }
@@ -3066,7 +3067,8 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
                 } else if (movement == NEXT_ROW) {
                     // Add all focusable items after this item whose row index is bigger
                     if (loc.row == focusedRow) {
-                        continue;
+                        //注释掉continue，单行、列的Grid布局，也把其他行、列的View添加到focusables中，方便换行
+//                        continue;
                     } else if (loc.row < focusedRow) {
                         break;
                     }
@@ -3074,7 +3076,8 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
                 } else if (movement == PREV_ROW) {
                     // Add all focusable items before this item whose row index is smaller
                     if (loc.row == focusedRow) {
-                        continue;
+                        //注释掉continue，单行、列的Grid布局，也把其他行、列的View添加到focusables中，方便换行
+//                        continue;
                     } else if (loc.row > focusedRow) {
                         break;
                     }
@@ -3375,8 +3378,8 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
-    public int getRowCountForAccessibility(RecyclerView.Recycler recycler,
-            RecyclerView.State state) {
+    public int getRowCountForAccessibility(Recycler recycler,
+                                           State state) {
         if (mOrientation == HORIZONTAL && mGrid != null) {
             return mGrid.getNumRows();
         }
@@ -3384,8 +3387,8 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
-    public int getColumnCountForAccessibility(RecyclerView.Recycler recycler,
-            RecyclerView.State state) {
+    public int getColumnCountForAccessibility(Recycler recycler,
+                                              State state) {
         if (mOrientation == VERTICAL && mGrid != null) {
             return mGrid.getNumRows();
         }
@@ -3393,8 +3396,8 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfoForItem(RecyclerView.Recycler recycler,
-            RecyclerView.State state, View host, AccessibilityNodeInfoCompat info) {
+    public void onInitializeAccessibilityNodeInfoForItem(Recycler recycler,
+                                                         State state, View host, AccessibilityNodeInfoCompat info) {
         ViewGroup.LayoutParams lp = host.getLayoutParams();
         if (mGrid == null || !(lp instanceof LayoutParams)) {
             super.onInitializeAccessibilityNodeInfoForItem(recycler, state, host, info);
