@@ -4,7 +4,7 @@ package com.msisuzney.tv_waterfallayout;
 import android.support.v7.widget.RecyclerView;
 
 /**
- * Fragment的状态变化监听类
+ * 状态变化监听类
  */
 public interface StateChangedObserver {
 

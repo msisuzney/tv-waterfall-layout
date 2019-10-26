@@ -1,6 +1,6 @@
-package com.msisuzney.tv_waterfallayout.bean;
+package com.msisuzney.tv_waterfallayout.models;
 
-public class AbsLayoutItem extends Item {
+public final class AbsoluteLayoutItem extends Item {
 
     //位置和宽高
     private int x, y, width, height;

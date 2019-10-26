@@ -15,14 +15,14 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.msisuzney.tv_demo.bean.TabBean;
 import com.msisuzney.tv_demo.lbpresenter.BlockPresenterSelector;
-import com.msisuzney.tv_waterfallayout.AbsWaterfallFragment;
+import com.msisuzney.tv_waterfallayout.AbsRowFragment;
 import com.msisuzney.tv_waterfallayout.OnItemKeyListener;
 import com.msisuzney.tv_waterfallayout.StateChangeObservable;
-import com.msisuzney.tv_waterfallayout.bean.AbsLayoutCollection;
-import com.msisuzney.tv_waterfallayout.bean.AbsLayoutItem;
-import com.msisuzney.tv_waterfallayout.bean.Collection;
-import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutCollection;
-import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutItem;
+import com.msisuzney.tv_waterfallayout.models.AbsoluteLayoutCollection;
+import com.msisuzney.tv_waterfallayout.models.AbsoluteLayoutItem;
+import com.msisuzney.tv_waterfallayout.models.Collection;
+import com.msisuzney.tv_waterfallayout.models.HorizontalLayoutCollection;
+import com.msisuzney.tv_waterfallayout.models.HorizontalLayoutItem;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +31,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaterfallFragment extends AbsWaterfallFragment implements OnItemKeyListener {
+public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListener {
 
     //色块间距 = FOCUS_PADDING * 2（焦点的预留位置）+ COLUMN_ITEM_PADDING * 2 = 48
     public static int COLUMN_ITEM_PADDING = 10;
@@ -121,15 +121,15 @@ public class WaterfallFragment extends AbsWaterfallFragment implements OnItemKey
                 horizontalLayoutCollection.setItems(items);
                 columnCollections.add(horizontalLayoutCollection);
             } else {
-                AbsLayoutCollection absLayoutCollection = new AbsLayoutCollection();
-                List<AbsLayoutItem> items = new ArrayList<>();
+                AbsoluteLayoutCollection absoluteLayoutCollection = new AbsoluteLayoutCollection();
+                List<AbsoluteLayoutItem> items = new ArrayList<>();
                 //网格的实际宽高
                 float gridWH = (float) (COLUMN_WIDTH * 1.0 / tabColumn.getColumns());
                 int height = (int) (gridWH * tabColumn.getRows());
 
                 if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {
                     height += COLUMN_TITLE_HEIGHT;
-                    AbsLayoutItem item = new AbsLayoutItem();
+                    AbsoluteLayoutItem item = new AbsoluteLayoutItem();
                     item.setData(tabColumn.getColumnTitle());
                     item.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
                     item.setHeight(COLUMN_TITLE_HEIGHT);
@@ -149,7 +149,7 @@ public class WaterfallFragment extends AbsWaterfallFragment implements OnItemKey
                     x += COLUMN_LEFT_RIGHT_MARGIN;
 
 
-                    AbsLayoutItem item = new AbsLayoutItem();
+                    AbsoluteLayoutItem item = new AbsoluteLayoutItem();
                     item.setX(x);
                     item.setY(y);
                     item.setWidth(w);
@@ -158,10 +158,10 @@ public class WaterfallFragment extends AbsWaterfallFragment implements OnItemKey
                     items.add(item);
                 }
 
-                absLayoutCollection.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-                absLayoutCollection.setHeight(height);
-                absLayoutCollection.setItems(items);
-                columnCollections.add(absLayoutCollection);
+                absoluteLayoutCollection.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+                absoluteLayoutCollection.setHeight(height);
+                absoluteLayoutCollection.setItems(items);
+                columnCollections.add(absoluteLayoutCollection);
             }
         }
 

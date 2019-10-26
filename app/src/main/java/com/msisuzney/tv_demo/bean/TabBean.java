@@ -53,6 +53,7 @@ public class TabBean {
         private String columnTitle;
         private int columns;
         private int rows;
+        // 1:水平滑动布局的数据，2：绝对布局的数据
         private int type;
         private List<AbsLayoutListBean> absLayoutList;
         private List<HorizontalLayoutListBean> horizontalLayoutList;

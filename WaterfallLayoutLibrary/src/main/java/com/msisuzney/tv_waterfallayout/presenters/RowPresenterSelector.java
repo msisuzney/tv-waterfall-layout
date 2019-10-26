@@ -1,10 +1,10 @@
-package com.msisuzney.tv_waterfallayout.presenter;
+package com.msisuzney.tv_waterfallayout.presenters;
 
 import android.support.v17.leanback.widget.Presenter;
 import android.support.v17.leanback.widget.PresenterSelector;
 
-import com.msisuzney.tv_waterfallayout.bean.AbsLayoutCollection;
-import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutCollection;
+import com.msisuzney.tv_waterfallayout.models.AbsoluteLayoutCollection;
+import com.msisuzney.tv_waterfallayout.models.HorizontalLayoutCollection;
 
 public final class RowPresenterSelector extends PresenterSelector {
 
@@ -30,7 +30,7 @@ public final class RowPresenterSelector extends PresenterSelector {
 
     @Override
     public Presenter getPresenter(Object item) {
-        if (item instanceof AbsLayoutCollection) {
+        if (item instanceof AbsoluteLayoutCollection) {
             return absLayoutAbsoluteLayoutRowPresenter;
         } else if (item instanceof HorizontalLayoutCollection) {
             return horizontalLayoutRowPresenter;

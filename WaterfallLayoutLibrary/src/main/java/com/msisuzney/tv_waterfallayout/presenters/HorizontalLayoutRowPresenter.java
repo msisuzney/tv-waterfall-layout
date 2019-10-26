@@ -1,6 +1,5 @@
-package com.msisuzney.tv_waterfallayout.presenter;
+package com.msisuzney.tv_waterfallayout.presenters;
 
-import android.graphics.Color;
 import android.support.v17.leanback.R;
 import android.support.v17.leanback.widget.ArrayObjectAdapter;
 import android.support.v17.leanback.widget.HorizontalGridView;
@@ -13,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutCollection;
-import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutItem;
+import com.msisuzney.tv_waterfallayout.models.HorizontalLayoutCollection;
+import com.msisuzney.tv_waterfallayout.models.HorizontalLayoutItem;
 
 class HorizontalLayoutRowPresenter extends Presenter {
     private Presenter itemDockPresenter;

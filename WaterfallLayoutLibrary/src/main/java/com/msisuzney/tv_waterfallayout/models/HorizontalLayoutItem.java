@@ -1,6 +1,6 @@
-package com.msisuzney.tv_waterfallayout.bean;
+package com.msisuzney.tv_waterfallayout.models;
 
-public class HorizontalLayoutItem extends Item {
+public final class HorizontalLayoutItem extends Item {
     //宽高
     private int width, height;
 

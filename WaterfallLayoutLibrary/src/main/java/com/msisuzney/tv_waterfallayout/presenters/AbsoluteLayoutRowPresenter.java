@@ -1,4 +1,4 @@
-package com.msisuzney.tv_waterfallayout.presenter;
+package com.msisuzney.tv_waterfallayout.presenters;
 
 import android.support.v17.leanback.R;
 import android.support.v17.leanback.widget.Presenter;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 
-import com.msisuzney.tv_waterfallayout.bean.AbsLayoutCollection;
-import com.msisuzney.tv_waterfallayout.bean.AbsLayoutItem;
+import com.msisuzney.tv_waterfallayout.models.AbsoluteLayoutCollection;
+import com.msisuzney.tv_waterfallayout.models.AbsoluteLayoutItem;
 
 import java.util.List;
 
@@ -27,15 +27,15 @@ class AbsoluteLayoutRowPresenter extends Presenter {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
-        AbsLayoutCollection collection = (AbsLayoutCollection) item;
+        AbsoluteLayoutCollection collection = (AbsoluteLayoutCollection) item;
         ColumnViewHolder columnViewHolder = (ColumnViewHolder) viewHolder;
         AbsoluteLayout parentView = columnViewHolder.getAbsoluteLayout();
         ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(collection.getWidth(), collection.getHeight());
         parentView.setLayoutParams(lp);
 
-        List<AbsLayoutItem> items = collection.getItems();
+        List<AbsoluteLayoutItem> items = collection.getItems();
         for (int i = 0; i < items.size(); i++) {
-            AbsLayoutItem layoutItem = items.get(i);
+            AbsoluteLayoutItem layoutItem = items.get(i);
             Presenter presenter = blockPresenterSelector.getPresenter(layoutItem.getData());
             if (presenter != null) {
                 ViewHolder vh = presenter.onCreateViewHolder(parentView);

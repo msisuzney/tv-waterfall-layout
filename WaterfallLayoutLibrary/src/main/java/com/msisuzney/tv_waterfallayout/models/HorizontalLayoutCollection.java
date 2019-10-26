@@ -1,8 +1,8 @@
-package com.msisuzney.tv_waterfallayout.bean;
+package com.msisuzney.tv_waterfallayout.models;
 
 import java.util.List;
 
-public class HorizontalLayoutCollection extends Collection {
+public final class HorizontalLayoutCollection extends Collection {
     private List<HorizontalLayoutItem> items;
 
     public List<HorizontalLayoutItem> getItems() {

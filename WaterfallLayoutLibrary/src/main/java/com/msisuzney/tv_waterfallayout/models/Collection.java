@@ -1,4 +1,4 @@
-package com.msisuzney.tv_waterfallayout.bean;
+package com.msisuzney.tv_waterfallayout.models;
 
 public abstract class Collection {
     //行的宽高

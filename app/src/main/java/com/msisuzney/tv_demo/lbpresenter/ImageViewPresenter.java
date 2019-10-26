@@ -14,11 +14,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.msisuzney.tv_demo.GlideApp;
 import com.msisuzney.tv_demo.WaterfallFragment;
-import com.msisuzney.tv_demo.bean.TabBean;
 import com.msisuzney.tv_waterfallayout.OnItemKeyListener;
 import com.msisuzney.tv_waterfallayout.R;
-
-import java.util.LinkedList;
 
 public class ImageViewPresenter extends Presenter {
 

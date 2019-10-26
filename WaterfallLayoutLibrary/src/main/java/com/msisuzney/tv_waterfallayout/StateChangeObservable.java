@@ -4,6 +4,11 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/**
+ * 状态类，这里只定义了三种基础的状态，可以继承该类定义更多的状态
+ *
+ * @param <T>
+ */
 public abstract class StateChangeObservable<T extends StateChangedObserver> {
 
     void notifyFragmentPause() {
