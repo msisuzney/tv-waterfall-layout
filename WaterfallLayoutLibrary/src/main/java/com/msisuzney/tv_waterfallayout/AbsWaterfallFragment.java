@@ -12,9 +12,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.msisuzney.tv_waterfallayout.presenter.RowPresenterSelector;
+
 import java.util.Collection;
 
 
+/**
+ * 以行作为最小单元的瀑布流布局<br/>
+ * <strong>行:</strong><br/>
+ * 每行都是一个绝对布局{@link android.widget.AbsoluteLayout}，
+ * 行的数据格式必须用{@link com.msisuzney.tv_waterfallayout.bean.Collection} 提供大小，以及使用{@link// RowData#setBlocks(List)} 设置行中的数据<br/>
+ * <strong>行中运营位：</strong><br/>
+ * 所有的运营位以绝对位置布局放进<strong>行</strong>中,需要重写 {@link AbsWaterfallFragment#initBlockPresenterSelector} 提供行中的运营位的布局位置
+ * 运营位必须用{@link// BlockData}提供x,y,width,height,以及使用{@link// BlockData#setData(Object)} 设置运营位的数据
+ * <br/>
+ * <br/>
+ * 如果瀑布流布局还有其他不是行的布局需要重写{@link AbsWaterfallFragment#initOtherPresenterSelector()} ()} 提供其他与<strong>行</strong>同级的布局Presenter
+ */
 public abstract class AbsWaterfallFragment extends Fragment {
 
     public static final String TAG = "AbsWaterfallFragment";
@@ -35,16 +49,13 @@ public abstract class AbsWaterfallFragment extends Fragment {
     @Nullable
     @Override
     public final View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return LayoutInflater.from(getContext()).inflate(R.layout.fragment_waterfall, container, false);
+        return inflater.inflate(R.layout.fragment_waterfall, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAdapter = initAdapter();
-        if (mAdapter == null) {
-            throw new NullPointerException("mAdapter must not be null");
-        }
         mVerticalGridView = view.findViewById(R.id.vgv);
         mVerticalGridView.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
         if (mOnRowSelectedListener != null) {
@@ -136,10 +147,35 @@ public abstract class AbsWaterfallFragment extends Fragment {
     }
 
 
+    private ArrayObjectAdapter initAdapter() {
+        PresenterSelector blockSelector = initBlockPresenterSelector();
+        if (blockSelector == null) {
+            throw new RuntimeException("BlockPresenterSelector must not be null");
+        }
+        PresenterSelector otherPresenterSelector = initOtherPresenterSelector();
+        RowPresenterSelector mSelector = new RowPresenterSelector(blockSelector);
+        mSelector.setOtherPresenterSelector(otherPresenterSelector);
+
+        return new ArrayObjectAdapter(mSelector);
+    }
+
+
     /**
-     * Sets the object adapter for the fragment.
+     * 行中的运营位的选择器，不能为null
+     *
+     * @return
      */
-    public abstract ArrayObjectAdapter initAdapter();
+    protected abstract PresenterSelector initBlockPresenterSelector();
+
+    /**
+     * 与行同级，但不是行的选择器
+     *
+     * @return
+     */
+    protected PresenterSelector initOtherPresenterSelector() {
+        return null;
+    }
+
 
     @Override
     public void onDestroyView() {

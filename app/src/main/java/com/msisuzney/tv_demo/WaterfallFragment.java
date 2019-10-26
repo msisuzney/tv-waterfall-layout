@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.msisuzney.tv_demo.bean.TabBean;
 import com.msisuzney.tv_demo.lbpresenter.BlockPresenterSelector;
-import com.msisuzney.tv_waterfallayout.AbsRowWaterfallFragment;
+import com.msisuzney.tv_waterfallayout.AbsWaterfallFragment;
 import com.msisuzney.tv_waterfallayout.OnItemKeyListener;
 import com.msisuzney.tv_waterfallayout.StateChangeObservable;
 import com.msisuzney.tv_waterfallayout.bean.AbsLayoutCollection;
@@ -31,7 +31,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaterfallFragment extends AbsRowWaterfallFragment implements OnItemKeyListener {
+public class WaterfallFragment extends AbsWaterfallFragment implements OnItemKeyListener {
 
     //色块间距 = FOCUS_PADDING * 2（焦点的预留位置）+ COLUMN_ITEM_PADDING * 2 = 48
     public static int COLUMN_ITEM_PADDING = 10;
@@ -80,18 +80,6 @@ public class WaterfallFragment extends AbsRowWaterfallFragment implements OnItem
         }
     }
 
-//    @Override
-//    protected PresenterSelector initOtherPresenterSelector() {
-//        return new PresenterSelector() {
-//            @Override
-//            public Presenter getPresenter(Object item) {
-//                if (item instanceof TabBean.ResultBean.HorizontalListBean) {
-//                    return new HorizontalRVPresenter(null);
-//                }
-//                return null;
-//            }
-//        };
-//    }
 
 
     @Override

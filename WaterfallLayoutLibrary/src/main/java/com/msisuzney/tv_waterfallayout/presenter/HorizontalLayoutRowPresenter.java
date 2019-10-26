@@ -16,8 +16,7 @@ import android.widget.FrameLayout;
 import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutCollection;
 import com.msisuzney.tv_waterfallayout.bean.HorizontalLayoutItem;
 
-
-public class HorizontalLayoutRowPresenter extends Presenter {
+class HorizontalLayoutRowPresenter extends Presenter {
     private Presenter itemDockPresenter;
 
     public HorizontalLayoutRowPresenter(PresenterSelector blockPresenterSelector) {

@@ -12,7 +12,7 @@ import com.msisuzney.tv_waterfallayout.bean.AbsLayoutItem;
 
 import java.util.List;
 
-final class AbsoluteLayoutRowPresenter extends Presenter {
+class AbsoluteLayoutRowPresenter extends Presenter {
     private PresenterSelector blockPresenterSelector;
 
     public AbsoluteLayoutRowPresenter(PresenterSelector blockPresenterSelector) {

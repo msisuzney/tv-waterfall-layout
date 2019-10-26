@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 /**
- * 一种实现焦点换行的View，当View在屏幕右边缘时按下右键，焦点会换行到下一行的第一个View，左边缘同理换行到上一行<br/>
+ * 一种实现焦点换行的View，当View在屏幕右边缘时按下右键，焦点会换行到下一行的第一个View，左边缘同理换行到上一行最后一个View<br/>
  * <p>
  * 使用 {@linkplain com.msisuzney.tv_waterfallayout.FocusLineFeedFrameLayout#setEdgeDistance(int)}
  * 设置距离屏幕边缘多少像素以内的View被认为是可以焦点换行的View<br/>
