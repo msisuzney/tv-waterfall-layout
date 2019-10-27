@@ -4,6 +4,11 @@ public abstract class Collection {
     //行的宽高
     private int width, height;
 
+    public Collection(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
     public int getWidth() {
         return width;
     }

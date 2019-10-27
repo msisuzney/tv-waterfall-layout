@@ -9,7 +9,7 @@ import com.msisuzney.tv_waterfallayout.OnItemKeyListener;
 
 
 /**
- * 栏目中的运营位的选择器
+ * 行中的运营位的选择器
  */
 public class BlockPresenterSelector extends PresenterSelector {
 

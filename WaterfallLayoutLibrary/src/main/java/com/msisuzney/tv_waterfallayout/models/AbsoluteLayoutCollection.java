@@ -4,6 +4,11 @@ import java.util.List;
 
 public final class AbsoluteLayoutCollection extends Collection {
 
+
+    public AbsoluteLayoutCollection(int width, int height) {
+        super(width, height);
+    }
+
     private List<AbsoluteLayoutItem> items;
 
     public List<AbsoluteLayoutItem> getItems() {
