@@ -69,7 +69,9 @@ class HorizontalLayoutRowPresenter extends Presenter {
         ArrayObjectAdapter objectAdapter = new ArrayObjectAdapter(itemDockPresenter);
         ItemBridgeAdapter adapter = new ItemBridgeAdapter(objectAdapter);
         horizontalGridView.setAdapter(adapter);
-        objectAdapter.addAll(0, collection.getItems());
+        if (collection.getItems() != null) {
+            objectAdapter.addAll(0, collection.getItems());
+        }
     }
 
     @Override

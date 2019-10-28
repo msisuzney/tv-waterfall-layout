@@ -34,22 +34,21 @@ class AbsoluteLayoutRowPresenter extends Presenter {
         parentView.setLayoutParams(lp);
 
         List<AbsoluteLayoutItem> items = collection.getItems();
-        for (int i = 0; i < items.size(); i++) {
-            AbsoluteLayoutItem layoutItem = items.get(i);
-            Presenter presenter = blockPresenterSelector.getPresenter(layoutItem.getData());
-            if (presenter != null) {
-                ViewHolder vh = presenter.onCreateViewHolder(parentView);
-                vh.view.setTag(R.id.lb_view_data_tag, layoutItem.getData());
-                vh.view.setTag(R.id.lb_view_holder_tag, vh);
-                presenter.onBindViewHolder(vh, layoutItem.getData());
-                AbsoluteLayout.LayoutParams layoutParams = new AbsoluteLayout.LayoutParams(layoutItem.getWidth(),
-                        layoutItem.getHeight(), layoutItem.getX(), layoutItem.getY());
-                parentView.addView(vh.view, layoutParams);
+        if (items != null) {
+            for (AbsoluteLayoutItem layoutItem : items) {
+                Presenter presenter = blockPresenterSelector.getPresenter(layoutItem.getData());
+                if (presenter != null) {
+                    ViewHolder vh = presenter.onCreateViewHolder(parentView);
+                    vh.view.setTag(R.id.lb_view_data_tag, layoutItem.getData());
+                    vh.view.setTag(R.id.lb_view_holder_tag, vh);
+                    presenter.onBindViewHolder(vh, layoutItem.getData());
+                    AbsoluteLayout.LayoutParams layoutParams = new AbsoluteLayout.LayoutParams(layoutItem.getWidth(),
+                            layoutItem.getHeight(), layoutItem.getX(), layoutItem.getY());
+                    parentView.addView(vh.view, layoutParams);
+                }
+
             }
-
         }
-
-
     }
 
     //被RV回收时调用

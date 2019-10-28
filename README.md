@@ -31,15 +31,42 @@ public class MyFragment extends AbsRowFragment {
     @Override
     protected PresenterSelector initBlockPresenterSelector() {
         //1.提供所有行中的运营位的Presenters，用于创建对应的View
-        return null;
+        return new PresenterSelector() {
+            @Override
+            public Presenter getPresenter(Object item) {
+                return new ImageViewPresenter(null);
+            }
+        };
     }
-    
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //2. 构造、添加Models
-        add(new HorizontalLayoutCollection(w,h));
-        add(new AbsoluteLayoutCollection(w,h));
+        //2. 构造水平滑动布局的Model
+        HorizontalLayoutItem item = new HorizontalLayoutItem();
+        item.setWidth(200);
+        item.setHeight(200);
+        List<HorizontalLayoutItem> items = new ArrayList<>();
+        items.add(item);
+        HorizontalLayoutCollection horizontalLayoutCollection =
+                new HorizontalLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, 200);
+        horizontalLayoutCollection.setItems(items);
+
+        //3. 构造绝对布局的Model
+        AbsoluteLayoutItem item1 = new AbsoluteLayoutItem();
+        item1.setHeight(200);
+        item1.setWidth(200);
+        item1.setX(200);
+        item1.setY(10);
+        List<AbsoluteLayoutItem> items1 = new ArrayList<>();
+        items1.add(item1);
+        AbsoluteLayoutCollection absoluteLayoutCollection =
+                new AbsoluteLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, 400);
+        absoluteLayoutCollection.setItems(items1);
+        
+        //4. 添加到布局中
+        add(horizontalLayoutCollection);
+        add(absoluteLayoutCollection);
     }
 }
 
