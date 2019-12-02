@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v17.leanback.widget.Presenter;
 import android.support.v17.leanback.widget.PresenterSelector;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -13,8 +14,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.msisuzney.tv_demo.bean.FooterBean;
 import com.msisuzney.tv_demo.bean.TabBean;
 import com.msisuzney.tv_demo.lbpresenter.BlockPresenterSelector;
+import com.msisuzney.tv_demo.lbpresenter.FooterViewPresenter;
 import com.msisuzney.tv_waterfallayout.AbsRowFragment;
 import com.msisuzney.tv_waterfallayout.OnItemKeyListener;
 import com.msisuzney.tv_waterfallayout.StateChangeObservable;
@@ -43,6 +46,7 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
     public static int COLUMN_WIDTH = 1920 - 2 * COLUMN_LEFT_RIGHT_MARGIN; // = 1728
 
     private MyStateChangeObservable observable;
+    private FooterViewPresenter footerViewPresenter = new FooterViewPresenter();
 
     @Override
     public PresenterSelector initBlockPresenterSelector() {
@@ -65,6 +69,19 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
     }
 
     @Override
+    protected PresenterSelector initOtherPresenterSelector() {
+        return new PresenterSelector() {
+            @Override
+            public Presenter getPresenter(Object item) {
+                if (item instanceof FooterBean) {
+                    return footerViewPresenter;
+                }
+                return null;
+            }
+        };
+    }
+
+    @Override
     protected StateChangeObservable initStateChangeObservable() {
         observable = new MyStateChangeObservable();
         return observable;
@@ -79,7 +96,6 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
             e.printStackTrace();
         }
     }
-
 
 
     @Override
@@ -104,7 +120,7 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
                 //宽度固定，根据宽度的比例计算高度
                 float gridWH = (float) (COLUMN_WIDTH * 1.0 / tabColumn.getColumns());
                 int height = (int) (gridWH * tabColumn.getRows());
-                HorizontalLayoutCollection horizontalLayoutCollection = new HorizontalLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT,height);
+                HorizontalLayoutCollection horizontalLayoutCollection = new HorizontalLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, height);
                 List<HorizontalLayoutItem> items = new ArrayList<>();
                 for (int j = 0; j < tabColumn.getHorizontalLayoutList().size(); j++) {
                     HorizontalLayoutItem item = new HorizontalLayoutItem();
@@ -133,7 +149,7 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
                     item.setY(COLUMN_ITEM_PADDING);
                     items.add(item);
                 }
-                AbsoluteLayoutCollection absoluteLayoutCollection = new AbsoluteLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT,height);
+                AbsoluteLayoutCollection absoluteLayoutCollection = new AbsoluteLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, height);
                 for (int j = 0; j < tabColumn.getAbsLayoutList().size(); j++) {
                     TabBean.ResultBean.AbsLayoutListBean block = tabColumn.getAbsLayoutList().get(j);
                     int x = (int) (gridWH * block.getX());
@@ -162,6 +178,7 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
             if (isAdded()) {
                 int size = size();
                 addAll(size, columnCollections);
+                add(new FooterBean());
             }
         });
     }
