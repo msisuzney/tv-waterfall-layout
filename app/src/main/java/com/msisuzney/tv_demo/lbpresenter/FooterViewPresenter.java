@@ -1,6 +1,6 @@
 package com.msisuzney.tv_demo.lbpresenter;
 
-import android.support.v17.leanback.widget.Presenter;
+import androidx.leanback.widget.Presenter;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 

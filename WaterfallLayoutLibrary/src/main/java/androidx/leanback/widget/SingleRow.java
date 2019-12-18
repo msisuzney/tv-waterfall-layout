@@ -11,11 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package android.support.v17.leanback.widget;
+package androidx.leanback.widget;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.CircularIntArray;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.collection.CircularIntArray;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.PrintWriter;
 

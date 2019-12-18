@@ -12,16 +12,12 @@
  * the License.
  */
 
-package android.support.v17.leanback.widget;
+package androidx.leanback.widget;
 
-import static android.support.v7.widget.RecyclerView.HORIZONTAL;
-import static android.support.v7.widget.RecyclerView.VERTICAL;
-import static android.support.v17.leanback.widget.BaseGridView.ITEM_ALIGN_OFFSET_PERCENT_DISABLED;
+import static androidx.recyclerview.widget.RecyclerView.HORIZONTAL;
+import static androidx.recyclerview.widget.RecyclerView.VERTICAL;
 
-import android.graphics.Rect;
-import android.support.v17.leanback.widget.GridLayoutManager.LayoutParams;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * Defines alignment position on two directions of an item view. Typically item

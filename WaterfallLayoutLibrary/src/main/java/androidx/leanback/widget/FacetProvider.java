@@ -11,13 +11,20 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package android.support.v17.leanback.widget;
-
-import android.support.v7.widget.RecyclerView;
+package androidx.leanback.widget;
 
 /**
- * Interface for schedule task on a ViewHolder.
+ * This is the query interface to supply optional features(aka facets) on an object without the need
+ * of letting the object to subclass or implement java interfaces.
  */
-public interface ViewHolderTask {
-    public void run(RecyclerView.ViewHolder viewHolder);
+public interface FacetProvider {
+
+    /**
+     * Queries optional implemented facet.
+     * @param facetClass  Facet classes to query,  examples are: class of
+     *                    {@link ItemAlignmentFacet}.
+     * @return Facet implementation for the facetClass or null if feature not implemented.
+     */
+    public Object getFacet(Class<?> facetClass);
+
 }

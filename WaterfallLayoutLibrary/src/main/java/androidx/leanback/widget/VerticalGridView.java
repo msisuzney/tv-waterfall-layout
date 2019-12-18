@@ -11,12 +11,12 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package android.support.v17.leanback.widget;
+package androidx.leanback.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v17.leanback.R;
-import android.support.v7.widget.RecyclerView;
+import androidx.leanback.R;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 

@@ -34,26 +34,26 @@
  * <li>The presenter is based on the existing Adapter concept in the Android framework, but has
  * been updated to add more flexibility and composability. In particular, the interface for
  * binding data to views has been separated from the adapter that traverses the data, allowing
- * presenters to be used in more places.  See {@link android.support.v17.leanback.widget.Presenter}
+ * presenters to be used in more places.  See {@link androidx.leanback.widget.Presenter}
  * for more details.
  * </li>
  * </ul>
  * <p>
  * Leanback contains a mixture of higher level building blocks such as Fragments in the
- * {@link android.support.v17.leanback.app} package. Notable examples are the
- * {@link android.support.v17.leanback.app.BrowseFragment} and the
- * {@link android.support.v17.leanback.app.GuidedStepFragment}.  Helper classes are also provided
+ * {@link androidx.leanback.app} package. Notable examples are the
+ * {@link androidx.leanback.app.BrowseFragment} and the
+ * {@link androidx.leanback.app.GuidedStepFragment}.  Helper classes are also provided
  * that work with the leanback fragments, for example the
- * {@link android.support.v17.leanback.app.PlaybackControlGlue}.
+ * {@link androidx.leanback.app.PlaybackControlGlue}.
  * </p>
  * <p>
- * Many lower level building blocks are also provided in the {@link android.support.v17.leanback.widget} package.
+ * Many lower level building blocks are also provided in the {@link androidx.leanback.widget} package.
  * These allow applications to easily incorporate Leanback look and feel while allowing for a
  * high degree of customization.  Primary examples include the UI widget
- * {@link android.support.v17.leanback.widget.HorizontalGridView} and
- * {@link android.support.v17.leanback.widget.VerticalGridView}.  Helper classes also exist at this level
+ * {@link androidx.leanback.widget.HorizontalGridView} and
+ * {@link androidx.leanback.widget.VerticalGridView}.  Helper classes also exist at this level
  * which do not depend on the leanback fragments, for example the
- * {@link android.support.v17.leanback.widget.TitleHelper}.
+ * {@link androidx.leanback.widget.TitleHelper}.
  */
 
-package android.support.v17.leanback;
+package androidx.leanback;

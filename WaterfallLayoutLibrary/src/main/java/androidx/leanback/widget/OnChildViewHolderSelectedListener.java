@@ -11,12 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package android.support.v17.leanback.widget;
+package androidx.leanback.widget;
 
-import android.support.v17.leanback.widget.ItemAlignmentFacet.ItemAlignmentDef;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.leanback.widget.ItemAlignmentFacet.ItemAlignmentDef;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Interface for receiving notification when a child of this ViewGroup has been selected.

@@ -12,13 +12,13 @@
  * the License.
  */
 
-package android.support.v17.leanback.widget;
+package androidx.leanback.widget;
 
-import static android.support.v17.leanback.widget.BaseGridView.WINDOW_ALIGN_BOTH_EDGE;
-import static android.support.v17.leanback.widget.BaseGridView.WINDOW_ALIGN_HIGH_EDGE;
-import static android.support.v17.leanback.widget.BaseGridView.WINDOW_ALIGN_LOW_EDGE;
-import static android.support.v17.leanback.widget.BaseGridView.WINDOW_ALIGN_OFFSET_PERCENT_DISABLED;
-import static android.support.v7.widget.RecyclerView.HORIZONTAL;
+import static androidx.leanback.widget.BaseGridView.WINDOW_ALIGN_BOTH_EDGE;
+import static androidx.leanback.widget.BaseGridView.WINDOW_ALIGN_HIGH_EDGE;
+import static androidx.leanback.widget.BaseGridView.WINDOW_ALIGN_LOW_EDGE;
+import static androidx.leanback.widget.BaseGridView.WINDOW_ALIGN_OFFSET_PERCENT_DISABLED;
+import static androidx.recyclerview.widget.RecyclerView.HORIZONTAL;
 
 /**
  * Maintains Window Alignment information of two axis.

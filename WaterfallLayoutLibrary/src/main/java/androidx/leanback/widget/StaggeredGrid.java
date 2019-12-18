@@ -11,14 +11,12 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package android.support.v17.leanback.widget;
+package androidx.leanback.widget;
 
-import android.support.v4.util.CircularArray;
-import android.support.v4.util.CircularIntArray;
+import androidx.collection.CircularArray;
+import androidx.collection.CircularIntArray;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A dynamic data structure that caches staggered grid position information

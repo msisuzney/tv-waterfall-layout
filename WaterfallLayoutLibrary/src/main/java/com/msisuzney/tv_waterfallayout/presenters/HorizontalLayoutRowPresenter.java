@@ -1,11 +1,11 @@
 package com.msisuzney.tv_waterfallayout.presenters;
 
-import android.support.v17.leanback.R;
-import android.support.v17.leanback.widget.ArrayObjectAdapter;
-import android.support.v17.leanback.widget.HorizontalGridView;
-import android.support.v17.leanback.widget.ItemBridgeAdapter;
-import android.support.v17.leanback.widget.Presenter;
-import android.support.v17.leanback.widget.PresenterSelector;
+import androidx.leanback.R;
+import androidx.leanback.widget.ArrayObjectAdapter;
+import androidx.leanback.widget.HorizontalGridView;
+import androidx.leanback.widget.ItemBridgeAdapter;
+import androidx.leanback.widget.Presenter;
+import androidx.leanback.widget.PresenterSelector;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

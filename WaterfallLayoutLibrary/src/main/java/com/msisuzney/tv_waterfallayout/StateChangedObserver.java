@@ -1,7 +1,7 @@
 package com.msisuzney.tv_waterfallayout;
 
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 状态变化监听类

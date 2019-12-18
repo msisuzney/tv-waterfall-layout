@@ -11,11 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package android.support.v17.leanback.widget;
+package androidx.leanback.widget;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.util.LruCache;
+import androidx.collection.LruCache;
 import android.util.SparseArray;
 import android.view.View;
 
@@ -23,10 +23,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import static android.support.v17.leanback.widget.BaseGridView.SAVE_NO_CHILD;
-import static android.support.v17.leanback.widget.BaseGridView.SAVE_ON_SCREEN_CHILD;
-import static android.support.v17.leanback.widget.BaseGridView.SAVE_LIMITED_CHILD;
-import static android.support.v17.leanback.widget.BaseGridView.SAVE_ALL_CHILD;
+import static androidx.leanback.widget.BaseGridView.SAVE_NO_CHILD;
+import static androidx.leanback.widget.BaseGridView.SAVE_ON_SCREEN_CHILD;
+import static androidx.leanback.widget.BaseGridView.SAVE_LIMITED_CHILD;
+import static androidx.leanback.widget.BaseGridView.SAVE_ALL_CHILD;
 
 /**
  * Maintains a bundle of states for a group of views. Each view must have a unique id to identify

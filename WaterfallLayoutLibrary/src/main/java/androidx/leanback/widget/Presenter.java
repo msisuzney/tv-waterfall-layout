@@ -11,10 +11,12 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package android.support.v17.leanback.widget;
+package androidx.leanback.widget;
 
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +24,7 @@ import java.util.Map;
 /**
  * A Presenter is used to generate {@link View}s and bind Objects to them on
  * demand. It is closely related to the concept of an {@link
- * android.support.v7.widget.RecyclerView.Adapter RecyclerView.Adapter}, but is
+ * RecyclerView.Adapter RecyclerView.Adapter}, but is
  * not position-based.  The leanback framework implements the adapter concept using
  * {@link ObjectAdapter} which refers to a Presenter (or {@link PresenterSelector}) instance.
  *

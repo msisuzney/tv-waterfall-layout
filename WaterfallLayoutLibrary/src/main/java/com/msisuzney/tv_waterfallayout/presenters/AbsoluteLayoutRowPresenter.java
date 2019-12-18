@@ -1,8 +1,8 @@
 package com.msisuzney.tv_waterfallayout.presenters;
 
-import android.support.v17.leanback.R;
-import android.support.v17.leanback.widget.Presenter;
-import android.support.v17.leanback.widget.PresenterSelector;
+import androidx.leanback.R;
+import androidx.leanback.widget.Presenter;
+import androidx.leanback.widget.PresenterSelector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;

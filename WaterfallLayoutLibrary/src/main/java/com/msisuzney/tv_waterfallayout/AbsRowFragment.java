@@ -2,11 +2,11 @@ package com.msisuzney.tv_waterfallayout;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v17.leanback.R;
-import android.support.v17.leanback.widget.*;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.leanback.R;
+import androidx.leanback.widget.*;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +20,7 @@ import java.util.Collection;
 /**
  * 以行作为最小运营单元的瀑布流竖直布局<br/>
  * <strong>行:</strong><br/>
- * 每行可以是一个绝对布局{@linkplain android.widget.AbsoluteLayout}，也可以是一个水平方向可以滑动的{@linkplain android.support.v17.leanback.widget.HorizontalGridView}
+ * 每行可以是一个绝对布局{@linkplain android.widget.AbsoluteLayout}，也可以是一个水平方向可以滑动的{@linkplain androidx.leanback.widget.HorizontalGridView}
  * <br/>
  * <br/>
  * <p>
