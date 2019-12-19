@@ -2,17 +2,23 @@ package com.msisuzney.tv_waterfallayout;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.leanback.R;
-import androidx.leanback.widget.*;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.msisuzney.tv_waterfallayout.presenters.RowPresenterSelector;
+import com.msisuzney.tv_waterfallayout.leanback.ArrayObjectAdapter;
+import com.msisuzney.tv_waterfallayout.leanback.HorizontalGridView;
+import com.msisuzney.tv_waterfallayout.leanback.ItemBridgeAdapter;
+import com.msisuzney.tv_waterfallayout.leanback.PresenterSelector;
+import com.msisuzney.tv_waterfallayout.leanback.VerticalGridView;
+import com.msisuzney.tv_waterfallayout.presenter.RowPresenterSelector;
 
 import java.util.Collection;
 
@@ -20,12 +26,12 @@ import java.util.Collection;
 /**
  * 以行作为最小运营单元的瀑布流竖直布局<br/>
  * <strong>行:</strong><br/>
- * 每行可以是一个绝对布局{@linkplain android.widget.AbsoluteLayout}，也可以是一个水平方向可以滑动的{@linkplain androidx.leanback.widget.HorizontalGridView}
+ * 每行可以是一个绝对布局{@linkplain android.widget.AbsoluteLayout}，也可以是一个水平方向可以滑动的{@linkplain HorizontalGridView}
  * <br/>
  * <br/>
  * <p>
- * 行的数据格式必须使用{@linkplain com.msisuzney.tv_waterfallayout.models.Collection} 提供宽高，
- * 以及使用{@linkplain com.msisuzney.tv_waterfallayout.models.Item}  提供行中每个运营位的数据以及大小<br/>
+ * 行的数据格式必须使用{@linkplain com.msisuzney.tv_waterfallayout.model.Collection} 提供宽高，
+ * 以及使用{@linkplain com.msisuzney.tv_waterfallayout.model.Item}  提供行中每个运营位的数据以及大小<br/>
  * <strong>行中运营位：</strong><br/>
  * 需要重写 {@linkplain AbsRowFragment#initBlockPresenterSelector} 提供行中的运营位布局的选择器
  * <br/>

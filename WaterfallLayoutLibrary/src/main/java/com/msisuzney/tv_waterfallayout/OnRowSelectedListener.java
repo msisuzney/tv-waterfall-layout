@@ -1,6 +1,6 @@
 package com.msisuzney.tv_waterfallayout;
 
-import androidx.leanback.widget.OnChildViewHolderSelectedListener;
+import com.msisuzney.tv_waterfallayout.leanback.OnChildViewHolderSelectedListener;
 
 /**
  * 选中某行

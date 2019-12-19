@@ -1,7 +1,7 @@
 package com.msisuzney.tv_demo.lbpresenter;
 
-import androidx.leanback.widget.Presenter;
-import androidx.leanback.widget.PresenterSelector;
+import com.msisuzney.tv_waterfallayout.leanback.Presenter;
+import com.msisuzney.tv_waterfallayout.leanback.PresenterSelector;
 
 import com.msisuzney.tv_demo.MyStateChangeObservable;
 import com.msisuzney.tv_demo.bean.TabBean;

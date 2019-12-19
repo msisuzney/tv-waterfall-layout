@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.leanback.widget.Presenter;
-import androidx.leanback.widget.PresenterSelector;
+import com.msisuzney.tv_waterfallayout.leanback.Presenter;
+import com.msisuzney.tv_waterfallayout.leanback.PresenterSelector;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -21,11 +21,11 @@ import com.msisuzney.tv_demo.lbpresenter.FooterViewPresenter;
 import com.msisuzney.tv_waterfallayout.AbsRowFragment;
 import com.msisuzney.tv_waterfallayout.OnItemKeyListener;
 import com.msisuzney.tv_waterfallayout.StateChangeObservable;
-import com.msisuzney.tv_waterfallayout.models.AbsoluteLayoutCollection;
-import com.msisuzney.tv_waterfallayout.models.AbsoluteLayoutItem;
-import com.msisuzney.tv_waterfallayout.models.Collection;
-import com.msisuzney.tv_waterfallayout.models.HorizontalLayoutCollection;
-import com.msisuzney.tv_waterfallayout.models.HorizontalLayoutItem;
+import com.msisuzney.tv_waterfallayout.model.AbsoluteLayoutCollection;
+import com.msisuzney.tv_waterfallayout.model.AbsoluteLayoutItem;
+import com.msisuzney.tv_waterfallayout.model.Collection;
+import com.msisuzney.tv_waterfallayout.model.HorizontalLayoutCollection;
+import com.msisuzney.tv_waterfallayout.model.HorizontalLayoutItem;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,11 +59,11 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
         addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    GlideApp.with(getContext()).resumeRequests();
-                } else {
-                    GlideApp.with(getContext()).pauseRequests();
-                }
+//                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+//                    GlideApp.with(getContext()).resumeRequests();
+//                } else {
+//                    GlideApp.with(getContext()).pauseRequests();
+//                }
             }
         });
     }
