@@ -2786,18 +2786,20 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
     private static Rect tempRect = new Rect();
     private static Rect tempRect1 = new Rect();
 
-    //只考虑竖直方向居中，暂不考虑水平方向
+    //计算子View相对父View中心线的偏移
     private int offsetFromCenterOf(View view, View childView) {
-
-        if (view instanceof ViewGroup) {
-            childView.getDrawingRect(tempRect);
-            ViewGroup parentView = (ViewGroup) view;
-            parentView.offsetDescendantRectToMyCoords(childView, tempRect);//得到直接父View坐标系下自己的rect
-            parentView.getDrawingRect(tempRect1);//父View的rect
-            //竖直方向：计算childView距离父view中间的距离
-            int offset = ((tempRect1.bottom + tempRect1.top) - (tempRect.bottom + tempRect.top)) / 2;
-            if (DEBUG) Log.v(getTag(), "offsetFromCenter:" + offset);
-            return offset;
+        //只考虑竖直方向居中，暂不考虑水平方向
+        if (mBaseGridView instanceof VerticalGridView) {
+            if (view instanceof ViewGroup) {
+                childView.getDrawingRect(tempRect);
+                ViewGroup parentView = (ViewGroup) view;
+                parentView.offsetDescendantRectToMyCoords(childView, tempRect);//得到直接父View坐标系下自己的rect
+                parentView.getDrawingRect(tempRect1);//父View的rect
+                //竖直方向：计算childView距离父view中间的距离
+                int offset = ((tempRect1.bottom + tempRect1.top) - (tempRect.bottom + tempRect.top)) / 2;
+                if (DEBUG) Log.v(getTag(), "offsetFromCenter:" + offset);
+                return offset;
+            }
         }
         return 0;
     }
@@ -2810,12 +2812,15 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
         if (childView != null) {
             //加上这个childView相对于View的offset,值来自ItemAlignmentFacet里面定义的偏移量数组,一般都没有设置
             scrollPrimary = getAdjustedPrimaryScrollPosition(scrollPrimary, view, childView);
-            //直接添加childView相对于父View中间的偏移量
-            int offset = offsetFromCenterOf(view, childView);
-            if (scrollPrimary - offset > 0) {//计算出来的偏移是正数才累加
-                scrollPrimary -= offset;
-            } else {//不是正数说明已经到顶了，不累加了
-                scrollPrimary = 0;
+
+            if (scrollPrimary > 0) {//如果scrollPrimary已经小于0了，说明已经到顶了，不用计算滑动
+                //直接添加childView相对于父View中间的偏移量
+                int offset = offsetFromCenterOf(view, childView);
+                if (scrollPrimary - offset > 0) {//计算出来的偏移是正数才累加
+                    scrollPrimary -= offset;
+                } else {//不是正数说明已经到顶了，不累加了
+                    scrollPrimary = 0;
+                }
             }
         }
         int scrollSecondary = getSecondarySystemScrollPosition(view);//水平方向

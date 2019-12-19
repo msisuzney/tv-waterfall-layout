@@ -2,11 +2,17 @@ package com.msisuzney.tv_demo;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.msisuzney.tv_demo.bean.TitleBean;
+import com.msisuzney.tv_demo.lbpresenter.TitlePresenter;
 import com.msisuzney.tv_waterfallayout.leanback.Presenter;
 import com.msisuzney.tv_waterfallayout.leanback.PresenterSelector;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -38,15 +44,16 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
 
     //运营位间距 = FOCUS_PADDING * 2（焦点的预留位置）+ COLUMN_ITEM_PADDING * 2 = 48
     public static int COLUMN_ITEM_PADDING = 10;
-    public static int COLUMN_TITLE_HEIGHT = 100;
+    //    public static int COLUMN_TITLE_HEIGHT = 100;
     //行左右的margin,实际要扣除运营位间距
     public static int COLUMN_LEFT_RIGHT_MARGIN = 120 - COLUMN_ITEM_PADDING;
     //title布局，没有COLUMN_ITEM_PADDING
-    public static int COLUMN_LEFT_RIGHT_MARGIN2 = 120;
+//    public static int COLUMN_LEFT_RIGHT_MARGIN2 = 120;
     public static int COLUMN_WIDTH = 1920 - 2 * COLUMN_LEFT_RIGHT_MARGIN; // = 1728
 
     private MyStateChangeObservable observable;
     private FooterViewPresenter footerViewPresenter = new FooterViewPresenter();
+    private TitlePresenter titleViewPresenter = new TitlePresenter();
 
     @Override
     public PresenterSelector initBlockPresenterSelector() {
@@ -75,6 +82,8 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
             public Presenter getPresenter(Object item) {
                 if (item instanceof FooterBean) {
                     return footerViewPresenter;
+                } else if (item instanceof TitleBean) {
+                    return titleViewPresenter;
                 }
                 return null;
             }
@@ -111,12 +120,13 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
     private void updateData(TabBean tabBean) {
         //TabBean中的位置大小只是比例，需要把TabBean转换成实际像素
 
-        List<Collection> columnCollections = new ArrayList<>();
-        //计算每行中每个运营位的绝对位置
+        List<Object> rows = new ArrayList<>();
         for (int i = 0; i < tabBean.getResult().size(); i++) {
             TabBean.ResultBean tabColumn = tabBean.getResult().get(i);
-
-            if (tabColumn.getType() == TabBean.ResultBean.TYPE_HORIZONTAL_LAYOUT) {
+            if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {//有标题，添加一个标题bean
+                rows.add(new TitleBean(tabColumn.getColumnTitle()));
+            }
+            if (tabColumn.getType() == TabBean.ResultBean.TYPE_HORIZONTAL_LAYOUT) {//是水平滑动布局的栏目
                 //宽度固定，根据宽度的比例计算高度
                 float gridWH = (float) (COLUMN_WIDTH * 1.0 / tabColumn.getColumns());
                 int height = (int) (gridWH * tabColumn.getRows());
@@ -133,30 +143,27 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
                     items.add(item);
                 }
                 horizontalLayoutCollection.setItems(items);
-                columnCollections.add(horizontalLayoutCollection);
-            } else {
+                rows.add(horizontalLayoutCollection);
+            } else if (tabColumn.getType() == TabBean.ResultBean.TYPE_ABSOLUTE_LAYOUT) { //是绝对布局的栏目，计算每行中每个运营位的绝对位置
                 List<AbsoluteLayoutItem> items = new ArrayList<>();
                 //网格的实际宽高
                 float gridWH = (float) (COLUMN_WIDTH * 1.0 / tabColumn.getColumns());
                 int height = (int) (gridWH * tabColumn.getRows());
                 if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {
-                    height += COLUMN_TITLE_HEIGHT;
-                    AbsoluteLayoutItem item = new AbsoluteLayoutItem();
-                    item.setData(tabColumn.getColumnTitle());
-                    item.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-                    item.setHeight(COLUMN_TITLE_HEIGHT);
-                    item.setX(COLUMN_LEFT_RIGHT_MARGIN2);
-                    item.setY(COLUMN_ITEM_PADDING);
-                    items.add(item);
+//                    height += COLUMN_TITLE_HEIGHT;
+//                    AbsoluteLayoutItem item = new AbsoluteLayoutItem();
+//                    item.setData(tabColumn.getColumnTitle());
+//                    item.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+//                    item.setHeight(COLUMN_TITLE_HEIGHT);
+//                    item.setX(COLUMN_LEFT_RIGHT_MARGIN2);
+//                    item.setY(COLUMN_ITEM_PADDING);
+//                    items.add(item);
                 }
                 AbsoluteLayoutCollection absoluteLayoutCollection = new AbsoluteLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, height);
                 for (int j = 0; j < tabColumn.getAbsLayoutList().size(); j++) {
                     TabBean.ResultBean.AbsLayoutListBean block = tabColumn.getAbsLayoutList().get(j);
                     int x = (int) (gridWH * block.getX());
                     int y = (int) (gridWH * block.getY());
-                    if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {
-                        y += COLUMN_TITLE_HEIGHT;
-                    }
                     int w = (int) (gridWH * (block.getW()));
                     int h = (int) (gridWH * (block.getH()));
                     x += COLUMN_LEFT_RIGHT_MARGIN;
@@ -169,7 +176,7 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
                     items.add(item);
                 }
                 absoluteLayoutCollection.setItems(items);
-                columnCollections.add(absoluteLayoutCollection);
+                rows.add(absoluteLayoutCollection);
             }
         }
 
@@ -177,7 +184,7 @@ public class WaterfallFragment extends AbsRowFragment implements OnItemKeyListen
         postRefreshRunnable(() -> {
             if (isAdded()) {
                 int size = size();
-                addAll(size, columnCollections);
+                addAll(size, rows);
                 add(new FooterBean());
             }
         });
