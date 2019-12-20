@@ -3,7 +3,7 @@ package com.msisuzney.tv.waterfallayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 /**
- * @uthor: chenxin
+ * @author: chenxin
  * @date: 2019-12-20
  * @email: chenxin7930@qq.com
  */

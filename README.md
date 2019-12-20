@@ -27,7 +27,15 @@
 Presenters根据不同的数据创建不同的View，具体见[android/tv-samples](https://github.com/android/tv-samples)  
 
 #### 2.使用方式
+1. 继承RowsFragment
+2. 添加AbsoluteLayout布局栏目，使用AbsoluteLayoutCollection定义栏目的宽高，再使用AbsoluteLayoutItem定义子View的位置、大小、bean类型与数据，
+最后使用setItems方法将AbsoluteLayoutItems添加到AbsoluteLayoutCollection中
+3. 添加水平滑动的HorizontalGirdView布局栏目，使用HorizontalLayoutCollection定义栏目的宽高，再使用HorizontalLayoutItem定义子View的大小、bean类型与数据，
+最后使用setItems方法将HorizontalLayoutItems添加到HorizontalLayoutCollection
+4. 使用RowsFragment的add方法将AbsoluteLayoutCollection/HorizontalLayoutCollection添加到布局中
+5. 复写RowsFragment的initBlockPresenterSelector方法，返回的PresenterSelector用于根据bean类型为栏目创建不同的View
 
+详细使用见demo module代码，简易代码如下：
 ```java
 public class MyFragment extends RowsFragment {
 
@@ -76,4 +84,3 @@ public class MyFragment extends RowsFragment {
 
 
 ```
-详细使用见demo module代码

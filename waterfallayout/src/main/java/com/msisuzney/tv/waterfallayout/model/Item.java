@@ -1,19 +1,20 @@
 package com.msisuzney.tv.waterfallayout.model;
+
 /**
- * @uthor: chenxin
+ * @author: chenxin
  * @date: 2019-12-20
  * @email: chenxin7930@qq.com
  */
 public abstract class Item {
 
-    //具体的数据
-    private Object data;
+    //具体的数据类型以及数据
+    private Object bean;
 
-    public Object getData() {
-        return data;
+    public Object getBean() {
+        return bean;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public void setBean(Object bean) {
+        this.bean = bean;
     }
 }

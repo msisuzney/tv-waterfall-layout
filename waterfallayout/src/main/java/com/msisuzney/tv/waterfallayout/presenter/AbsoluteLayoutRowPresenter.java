@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @uthor: chenxin
+ * @author: chenxin
  * @date: 2019-12-20
  * @email: chenxin7930@qq.com
  */
@@ -50,13 +50,13 @@ class AbsoluteLayoutRowPresenter extends Presenter {
 
             int x = 0;
             for (AbsoluteLayoutItem layoutItem : items) {
-                Presenter presenter = blockPresenterSelector.getPresenter(layoutItem.getData());
+                Presenter presenter = blockPresenterSelector.getPresenter(layoutItem.getBean());
                 if (presenter != null) {
                     x++;
                     ViewHolder vh = presenter.onCreateViewHolder(parentView);
-                    vh.view.setTag(R.id.lb_view_data_tag, layoutItem.getData());
+                    vh.view.setTag(R.id.lb_view_data_tag, layoutItem.getBean());
                     vh.view.setTag(R.id.lb_view_holder_tag, vh);
-                    presenter.onBindViewHolder(vh, layoutItem.getData());
+                    presenter.onBindViewHolder(vh, layoutItem.getBean());
                     AbsoluteLayout.LayoutParams layoutParams = new AbsoluteLayout.LayoutParams(layoutItem.getWidth(),
                             layoutItem.getHeight(), layoutItem.getX(), layoutItem.getY());
                     parentView.addView(vh.view, layoutParams);

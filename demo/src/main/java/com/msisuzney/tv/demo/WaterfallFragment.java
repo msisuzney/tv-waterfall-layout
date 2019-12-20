@@ -37,7 +37,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * @uthor: chenxin
+ * @author: chenxin
  * @date: 2019-12-20
  * @email: chenxin7930@qq.com
  */
@@ -141,7 +141,7 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
                     int h = (int) (gridWH * bean.getH());
                     item.setHeight(h);
                     item.setWidth(w);
-                    item.setData(bean);
+                    item.setBean(bean);
                     items.add(item);
                 }
                 horizontalLayoutCollection.setItems(items);
@@ -164,7 +164,7 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
                     item.setY(y);
                     item.setWidth(w);
                     item.setHeight(h);
-                    item.setData(block);
+                    item.setBean(block);
                     items.add(item);
                 }
                 absoluteLayoutCollection.setItems(items);

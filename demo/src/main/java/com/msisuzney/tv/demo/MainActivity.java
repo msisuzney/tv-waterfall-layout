@@ -3,7 +3,7 @@ package com.msisuzney.tv.demo;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 /**
- * @uthor: chenxin
+ * @author: chenxin
  * @date: 2019-12-20
  * @email: chenxin7930@qq.com
  */
