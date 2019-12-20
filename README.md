@@ -1,13 +1,17 @@
 # TV_WaterfallLayout
-一种基于Android Leanback改造的Android TV瀑布流布局  
+**一种基于Android Leanback改造的Android TV瀑布流布局**    
+
 示例效果如下：
 <div align=center>
 <img src="demo.gif" width = "480" height = "270" alt="演示" /> 
 </div>  
 
+### 解决的问题
+在实际的产品中，瀑布流布局的运营按照栏目划分，每个栏目中的资源、海报宽高完全按运营需要自定义，
+Leanback不支持自定义栏目中的View的宽高、栏目中的View居中
 ### 特性  
 
-- 以**行**做为布局滑动控制的基本单元，行的布局可以是**HorizontalGridView**或者**AbsoluteLayout**，也可以自定义**行**的布局
+- 以**行**做为瀑布流布局的运营单元，行的布局可以是**HorizontalGridView**或者**AbsoluteLayout**，也可以自定义**行**的布局
 - 获得焦点的View自动居中显示
 - 快速滑动时不会出现焦点移动不合理的情况
 - 支持焦点自动换行，当焦点View在屏幕右边缘时按下右键，焦点会换行到下一行的第一个View，左边缘同理换行到上一行最后一个View  
@@ -25,7 +29,7 @@ Presenters根据不同的数据创建不同的View，具体见[android/tv-sample
 #### 2.使用方式
 
 ```java
-public class MyFragment extends AbsRowFragment {
+public class MyFragment extends RowFragment {
 
 
     @Override
@@ -72,4 +76,4 @@ public class MyFragment extends AbsRowFragment {
 
 
 ```
-详细使用见demo代码
+详细使用见demo module代码

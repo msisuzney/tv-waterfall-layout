@@ -59,6 +59,7 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
         return new BlockPresenterSelector(observable, this);
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -72,6 +73,11 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
 //                }
             }
         });
+        try {
+            new LoadDataAsyncTask(this).execute(getContext().getAssets().open("data.json"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -98,11 +104,6 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
     @Override
     public void onResume() {
         super.onResume();
-        try {
-            new LoadDataAsyncTask(this).execute(getContext().getAssets().open("data.json"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -148,16 +149,6 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
                 //网格的实际宽高
                 float gridWH = (float) (COLUMN_WIDTH * 1.0 / tabColumn.getColumns());
                 int height = (int) (gridWH * tabColumn.getRows());
-                if (!TextUtils.isEmpty(tabColumn.getColumnTitle())) {
-//                    height += COLUMN_TITLE_HEIGHT;
-//                    AbsoluteLayoutItem item = new AbsoluteLayoutItem();
-//                    item.setData(tabColumn.getColumnTitle());
-//                    item.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-//                    item.setHeight(COLUMN_TITLE_HEIGHT);
-//                    item.setX(COLUMN_LEFT_RIGHT_MARGIN2);
-//                    item.setY(COLUMN_ITEM_PADDING);
-//                    items.add(item);
-                }
                 AbsoluteLayoutCollection absoluteLayoutCollection = new AbsoluteLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, height);
                 for (int j = 0; j < tabColumn.getAbsLayoutList().size(); j++) {
                     TabBean.ResultBean.AbsLayoutListBean block = tabColumn.getAbsLayoutList().get(j);
