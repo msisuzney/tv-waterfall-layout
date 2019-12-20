@@ -6,7 +6,7 @@
 
     <fragment
         android:tag="test"
-        android:name="com.msisuzney.tv_demo.WaterfallFragment"
+        android:name="com.msisuzney.tv.demo.WaterfallFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/darker_gray" />

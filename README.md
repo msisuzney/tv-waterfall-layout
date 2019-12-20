@@ -29,7 +29,7 @@ Presenters根据不同的数据创建不同的View，具体见[android/tv-sample
 #### 2.使用方式
 
 ```java
-public class MyFragment extends RowFragment {
+public class MyFragment extends RowsFragment {
 
 
     @Override

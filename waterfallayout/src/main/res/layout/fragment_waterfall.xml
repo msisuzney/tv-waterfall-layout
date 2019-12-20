@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.msisuzney.tv.waterfallayout.leanback.VerticalGridView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/vgv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    app:focusOutEnd="true"
+    app:focusOutFront="true" />
+

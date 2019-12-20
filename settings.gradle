@@ -1,1 +1,1 @@
-include ':demo', ':waterfallLayout'
+include ':demo', ':waterfallayout'
