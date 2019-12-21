@@ -27,21 +27,21 @@
 Presenters根据不同的数据创建不同的View，具体见[android/tv-samples](https://github.com/android/tv-samples)  
 
 #### 2.使用方式
-0. 根目录下`build.gradle`
+0. 添加依赖
 ```gradle
-...
+//1) 根目录下build.gradle
 allprojects {
     repositories {
-        ...
         //add jitpack.io repo
         maven { url 'https://jitpack.io' }
     }
 }
-...
-```
-module `build.gradle`
-```gradle
-implementation 'com.github.msisuzney:tv-waterfall-layout:1.0.0'
+
+//2) module build.gradle
+dependencies {
+    //add lib
+    implementation 'com.github.msisuzney:tv-waterfall-layout:1.0.0'
+}
 ```
 1. 继承`RowsFragment`
 2. 添加`AbsoluteLayout`布局栏目，使用`AbsoluteLayoutCollection`定义栏目的宽高，再使用`AbsoluteLayoutItem`定义子`View`的位置、大小、bean类型与数据，
