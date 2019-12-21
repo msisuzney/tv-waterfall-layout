@@ -84,3 +84,7 @@ public class MyFragment extends RowsFragment {
 
 
 ```
+#### 3.其他功能
+1. 实现焦点换行，需要栏目中的View需要使用**FocusLineFeedFrameLayout作为根布局**
+2. 状态监听，栏目中的View实现StateChangedObserver接口即可。
+也可以复写RowsFragment的initStateChangeObservable方法返回自定义的StateChangeObservable

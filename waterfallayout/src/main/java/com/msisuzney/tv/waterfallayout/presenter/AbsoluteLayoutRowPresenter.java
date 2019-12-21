@@ -45,14 +45,9 @@ class AbsoluteLayoutRowPresenter extends Presenter {
 
         List<AbsoluteLayoutItem> items = collection.getItems();
         if (items != null) {
-            ItemAlignmentFacet childViewFocusedOffsets = new ItemAlignmentFacet();
-            List<ItemAlignmentFacet.ItemAlignmentDef> itemAlignmentDefs = new ArrayList<ItemAlignmentFacet.ItemAlignmentDef>();
-
-            int x = 0;
             for (AbsoluteLayoutItem layoutItem : items) {
                 Presenter presenter = blockPresenterSelector.getPresenter(layoutItem.getBean());
                 if (presenter != null) {
-                    x++;
                     ViewHolder vh = presenter.onCreateViewHolder(parentView);
                     vh.view.setTag(R.id.lb_view_data_tag, layoutItem.getBean());
                     vh.view.setTag(R.id.lb_view_holder_tag, vh);
@@ -61,39 +56,8 @@ class AbsoluteLayoutRowPresenter extends Presenter {
                             layoutItem.getHeight(), layoutItem.getX(), layoutItem.getY());
                     parentView.addView(vh.view, layoutParams);
 
-//                    if (x < 3) {
-//                        int id = new Random().nextInt();
-//                        vh.view.setId(id);
-//                        ItemAlignmentFacet.ItemAlignmentDef alignmentDef = new ItemAlignmentFacet.ItemAlignmentDef();
-//                        alignmentDef.setItemAlignmentViewId(id);
-//                        alignmentDef.setItemAlignmentOffset(-100);
-//                        itemAlignmentDefs.add(alignmentDef);
-//                    }
-
-//                    if (x == 3) {
-//                    Log.i("cx", "x = 3 view alignmentDef");
-//                    int id = new Random().nextInt();
-//                    vh.view.setId(id);
-//                    ItemAlignmentFacet.ItemAlignmentDef alignmentDef = new ItemAlignmentFacet.ItemAlignmentDef();
-//                    alignmentDef.setItemAlignmentViewId(id);
-//                    alignmentDef.setItemAlignmentFocusViewId(id);
-//                    alignmentDef.setItemAlignmentOffset(100);
-//                    itemAlignmentDefs.add(alignmentDef);
-//                    }
-
                 }
             }
-//            ItemAlignmentFacet.ItemAlignmentDef[] arrayDefs = new ItemAlignmentFacet.ItemAlignmentDef[itemAlignmentDefs.size() + 1];
-//            arrayDefs[0] = new ItemAlignmentFacet.ItemAlignmentDef();
-//            for (int i = 0; i < itemAlignmentDefs.size(); i++) {
-//                arrayDefs[i + 1] = itemAlignmentDefs.get(i);
-//            }
-//            ItemAlignmentFacet.ItemAlignmentDef[] arrayDefs = new ItemAlignmentFacet.ItemAlignmentDef[itemAlignmentDefs.size()];
-//            for (int i = 0; i < itemAlignmentDefs.size(); i++) {
-//                arrayDefs[i] = itemAlignmentDefs.get(i);
-//            }
-//            childViewFocusedOffsets.setAlignmentDefs(arrayDefs);
-//            setFacet(ItemAlignmentFacet.class, childViewFocusedOffsets);
         }
     }
 

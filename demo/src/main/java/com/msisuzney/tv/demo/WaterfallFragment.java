@@ -2,10 +2,12 @@ package com.msisuzney.tv.demo;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.msisuzney.tv.demo.bean.FooterBean;
+import com.msisuzney.tv.demo.bean.StateBean;
 import com.msisuzney.tv.demo.bean.TabBean;
 import com.msisuzney.tv.demo.bean.TitleBean;
 import com.msisuzney.tv.demo.lbpresenter.BlockPresenterSelector;
@@ -13,6 +15,7 @@ import com.msisuzney.tv.demo.lbpresenter.FooterViewPresenter;
 import com.msisuzney.tv.demo.lbpresenter.TitlePresenter;
 import com.msisuzney.tv.waterfallayout.leanback.Presenter;
 import com.msisuzney.tv.waterfallayout.leanback.PresenterSelector;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
@@ -36,6 +39,7 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * @author: chenxin
  * @date: 2019-12-20
@@ -171,7 +175,17 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
                 rows.add(absoluteLayoutCollection);
             }
         }
-
+        //以下添加一个栏目，这个栏目中只有一个View，这个View演示监听布局的状态
+        AbsoluteLayoutCollection absoluteLayoutCollection = new AbsoluteLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, 200);
+        List<AbsoluteLayoutItem> items = new ArrayList<>();
+        AbsoluteLayoutItem item = new AbsoluteLayoutItem();
+        item.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        item.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        item.setBean(new StateBean());
+        items.add(item);
+        absoluteLayoutCollection.setItems(items);
+        rows.add(6, new TitleBean("栏目中的View监听状态"));
+        rows.add(7, absoluteLayoutCollection);
 
         postRefreshRunnable(() -> {
             if (isAdded()) {

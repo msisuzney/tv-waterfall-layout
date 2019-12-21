@@ -28,6 +28,7 @@ import java.util.Collection;
  * @date: 2019-12-20
  * @email: chenxin7930@qq.com
  */
+
 /**
  * 以行(Row)作为最小运营单元的瀑布流竖直布局<br/><br/>
  * <strong>行的定义:</strong><br/>
@@ -38,7 +39,7 @@ import java.util.Collection;
  * <li>自定义布局，需要重写{@linkplain RowsFragment#initOtherPresenterSelector()} 提供View
  * </li>
  * </ol>
-
+ *
  * <p>
  * 其中，绝对布局和水平方向滑动布局必须使用{@linkplain com.msisuzney.tv.waterfallayout.model.Collection} 提供宽高，
  * 以及必须使用{@linkplain com.msisuzney.tv.waterfallayout.model.Item}  提供布局中每个View的宽高和数据<br/><br/>
