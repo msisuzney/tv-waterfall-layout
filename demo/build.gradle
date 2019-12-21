@@ -32,5 +32,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation project(':waterfallayout')
+    implementation 'com.github.msisuzney:tv-waterfall-layout:1.0.0'
+//    implementation project(':waterfallayout')
 }

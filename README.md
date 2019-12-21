@@ -1,5 +1,5 @@
 # Android TV瀑布流控件
-一种基于Android Leanback改造的Android TV瀑布流布局   
+**一种基于Android Leanback改造的Android TV瀑布流布局** 
 
 示例效果如下：
 <div align=center>
@@ -27,6 +27,22 @@
 Presenters根据不同的数据创建不同的View，具体见[android/tv-samples](https://github.com/android/tv-samples)  
 
 #### 2.使用方式
+0. 根目录下`build.gradle`
+```gradle
+...
+allprojects {
+    repositories {
+        ...
+        //add jitpack.io repo
+        maven { url 'https://jitpack.io' }
+    }
+}
+...
+```
+module `build.gradle`
+```gradle
+implementation 'com.github.msisuzney:tv-waterfall-layout:1.0.0'
+```
 1. 继承`RowsFragment`
 2. 添加`AbsoluteLayout`布局栏目，使用`AbsoluteLayoutCollection`定义栏目的宽高，再使用`AbsoluteLayoutItem`定义子`View`的位置、大小、bean类型与数据，
 最后使用`setItems`方法将`AbsoluteLayoutItems`添加到`AbsoluteLayoutCollection`中
