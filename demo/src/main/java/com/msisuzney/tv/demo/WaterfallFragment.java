@@ -10,7 +10,7 @@ import com.msisuzney.tv.demo.bean.FooterBean;
 import com.msisuzney.tv.demo.bean.StateBean;
 import com.msisuzney.tv.demo.bean.TabBean;
 import com.msisuzney.tv.demo.bean.TitleBean;
-import com.msisuzney.tv.demo.lbpresenter.BlockPresenterSelector;
+import com.msisuzney.tv.demo.lbpresenter.ColumnItemViewFactory;
 import com.msisuzney.tv.demo.lbpresenter.FooterViewPresenter;
 import com.msisuzney.tv.demo.lbpresenter.TitlePresenter;
 import com.msisuzney.tv.waterfallayout.leanback.Presenter;
@@ -28,8 +28,8 @@ import com.google.gson.Gson;
 import com.msisuzney.tv.waterfallayout.RowsFragment;
 import com.msisuzney.tv.waterfallayout.OnItemKeyListener;
 import com.msisuzney.tv.waterfallayout.StateChangeObservable;
-import com.msisuzney.tv.waterfallayout.model.AbsoluteLayoutCollection;
-import com.msisuzney.tv.waterfallayout.model.AbsoluteLayoutItem;
+import com.msisuzney.tv.waterfallayout.model.ColumnLayoutCollection;
+import com.msisuzney.tv.waterfallayout.model.ColumnLayoutItem;
 import com.msisuzney.tv.waterfallayout.model.HorizontalLayoutCollection;
 import com.msisuzney.tv.waterfallayout.model.HorizontalLayoutItem;
 
@@ -62,7 +62,7 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
 
     @Override
     public PresenterSelector initBlockPresenterSelector() {
-        return new BlockPresenterSelector(observable, this);
+        return new ColumnItemViewFactory(observable, this);
     }
 
 
@@ -145,17 +145,17 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
                     int h = (int) (gridWH * bean.getH());
                     item.setHeight(h);
                     item.setWidth(w);
-                    item.setBean(bean);
+                    item.setData(bean);
                     items.add(item);
                 }
                 horizontalLayoutCollection.setItems(items);
                 rows.add(horizontalLayoutCollection);
             } else if (tabColumn.getType() == TabBean.ResultBean.TYPE_ABSOLUTE_LAYOUT) { //是绝对布局的栏目，计算每行中每个运营位的绝对位置
-                List<AbsoluteLayoutItem> items = new ArrayList<>();
+                List<ColumnLayoutItem> items = new ArrayList<>();
                 //网格的实际宽高
                 float gridWH = (float) (COLUMN_WIDTH * 1.0 / tabColumn.getColumns());
                 int height = (int) (gridWH * tabColumn.getRows());
-                AbsoluteLayoutCollection absoluteLayoutCollection = new AbsoluteLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, height);
+                ColumnLayoutCollection cLayoutCollection = new ColumnLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, height);
                 for (int j = 0; j < tabColumn.getAbsLayoutList().size(); j++) {
                     TabBean.ResultBean.AbsLayoutListBean block = tabColumn.getAbsLayoutList().get(j);
                     int x = (int) (gridWH * block.getX());
@@ -163,29 +163,31 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
                     int w = (int) (gridWH * (block.getW()));
                     int h = (int) (gridWH * (block.getH()));
                     x += COLUMN_LEFT_RIGHT_MARGIN;
-                    AbsoluteLayoutItem item = new AbsoluteLayoutItem();
+                    ColumnLayoutItem item = new ColumnLayoutItem();
                     item.setX(x);
                     item.setY(y);
                     item.setWidth(w);
                     item.setHeight(h);
-                    item.setBean(block);
+                    item.setData(block);
                     items.add(item);
                 }
-                absoluteLayoutCollection.setItems(items);
-                rows.add(absoluteLayoutCollection);
+                cLayoutCollection.setItems(items);
+                rows.add(cLayoutCollection);
             }
         }
         //以下添加一个栏目，这个栏目中只有一个View，这个View演示监听布局的状态
-        AbsoluteLayoutCollection absoluteLayoutCollection = new AbsoluteLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, 200);
-        List<AbsoluteLayoutItem> items = new ArrayList<>();
-        AbsoluteLayoutItem item = new AbsoluteLayoutItem();
+        ColumnLayoutCollection c2Collection = new ColumnLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, 200);
+        List<ColumnLayoutItem> items = new ArrayList<>();
+        ColumnLayoutItem item = new ColumnLayoutItem();
         item.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         item.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        item.setBean(new StateBean());
+        item.setData(new StateBean());
         items.add(item);
-        absoluteLayoutCollection.setItems(items);
+        c2Collection.setItems(items);
         rows.add(6, new TitleBean("栏目中的View监听状态"));
-        rows.add(7, absoluteLayoutCollection);
+        rows.add(7, c2Collection);
+
+
 
         postRefreshRunnable(() -> {
             if (isAdded()) {

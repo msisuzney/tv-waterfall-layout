@@ -35,10 +35,10 @@ class HorizontalLayoutRowPresenter extends Presenter {
                 HorizontalLayoutItem horizontalLayoutItem = (HorizontalLayoutItem) item;
                 ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(horizontalLayoutItem.getWidth(), horizontalLayoutItem.getHeight());
                 viewHolder.view.setLayoutParams(lp);
-                Presenter itemPresenter = blockPresenterSelector.getPresenter(horizontalLayoutItem.getBean());
+                Presenter itemPresenter = blockPresenterSelector.getPresenter(horizontalLayoutItem.getData());
                 ViewHolder vh = itemPresenter.onCreateViewHolder((ViewGroup) viewHolder.view);
-                itemPresenter.onBindViewHolder(vh, horizontalLayoutItem.getBean());
-                viewHolder.view.setTag(R.id.lb_view_data_tag, horizontalLayoutItem.getBean());
+                itemPresenter.onBindViewHolder(vh, horizontalLayoutItem.getData());
+                viewHolder.view.setTag(R.id.lb_view_data_tag, horizontalLayoutItem.getData());
                 viewHolder.view.setTag(R.id.lb_view_holder_tag, viewHolder);
                 ((ViewGroup) viewHolder.view).addView(vh.view);
             }

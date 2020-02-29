@@ -2811,7 +2811,7 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
         if (DEBUG) Log.v(getTag(), "scrollPrimary1=" + scrollPrimary);
         if (childView != null) {
             //加上这个childView相对于View的offset,值来自ItemAlignmentFacet里面定义的偏移量数组,一般都没有设置
-            scrollPrimary = getAdjustedPrimaryScrollPosition(scrollPrimary, view, childView);
+//            scrollPrimary = getAdjustedPrimaryScrollPosition(scrollPrimary, view, childView);
 
             if (scrollPrimary > 0) {//如果scrollPrimary已经小于0了，说明已经到顶了，不用计算滑动
                 //直接添加childView相对于父View中间的偏移量
@@ -2829,7 +2829,12 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
                     + " " + mPrimaryScrollExtra + " " + mWindowAlignment);
             Log.v(getTag(), "getAlignedPosition " + mScrollOffsetPrimary + " " + mScrollOffsetSecondary);
         }
+        int maxScroll = mWindowAlignment.mainAxis().getMaxScroll();//最大的滑动距离
         if (DEBUG) Log.v(getTag(), "scrollPrimary2=" + scrollPrimary);
+        if (DEBUG) Log.v(getTag(), "max scroll=" + maxScroll);
+        if (scrollPrimary > maxScroll) {//如果需要滑动的距离已经大于可以滑动的高度，就直接滑到最底部，要不然会跳动
+            scrollPrimary = maxScroll;
+        }
         scrollPrimary -= mScrollOffsetPrimary;//减去上次的View居中时距离顶部的位置，就是需要滑动的距离
         scrollSecondary -= mScrollOffsetSecondary;
         scrollPrimary += mPrimaryScrollExtra;

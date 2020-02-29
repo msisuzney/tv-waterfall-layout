@@ -3,7 +3,7 @@ package com.msisuzney.tv.waterfallayout.presenter;
 import com.msisuzney.tv.waterfallayout.leanback.Presenter;
 import com.msisuzney.tv.waterfallayout.leanback.PresenterSelector;
 
-import com.msisuzney.tv.waterfallayout.model.AbsoluteLayoutCollection;
+import com.msisuzney.tv.waterfallayout.model.ColumnLayoutCollection;
 import com.msisuzney.tv.waterfallayout.model.HorizontalLayoutCollection;
 /**
  * @author: chenxin
@@ -12,12 +12,12 @@ import com.msisuzney.tv.waterfallayout.model.HorizontalLayoutCollection;
  */
 public final class RowPresenterSelector extends PresenterSelector {
 
-    private AbsoluteLayoutRowPresenter absLayoutAbsoluteLayoutRowPresenter;
+    private ColumnLayoutRowPresenter absLayoutColumnLayoutRowPresenter;
     private HorizontalLayoutRowPresenter horizontalLayoutRowPresenter;
     private PresenterSelector otherPresenterSelector;
 
     public RowPresenterSelector(PresenterSelector blockPresenterSelector) {
-        absLayoutAbsoluteLayoutRowPresenter = new AbsoluteLayoutRowPresenter(blockPresenterSelector);
+        absLayoutColumnLayoutRowPresenter = new ColumnLayoutRowPresenter(blockPresenterSelector);
         horizontalLayoutRowPresenter = new HorizontalLayoutRowPresenter(blockPresenterSelector);
     }
 
@@ -34,8 +34,8 @@ public final class RowPresenterSelector extends PresenterSelector {
 
     @Override
     public Presenter getPresenter(Object item) {
-        if (item instanceof AbsoluteLayoutCollection) {
-            return absLayoutAbsoluteLayoutRowPresenter;
+        if (item instanceof ColumnLayoutCollection) {
+            return absLayoutColumnLayoutRowPresenter;
         } else if (item instanceof HorizontalLayoutCollection) {
             return horizontalLayoutRowPresenter;
         } else {

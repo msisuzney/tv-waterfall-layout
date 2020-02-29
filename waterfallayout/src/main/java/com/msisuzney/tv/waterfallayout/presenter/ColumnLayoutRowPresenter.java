@@ -1,61 +1,55 @@
 package com.msisuzney.tv.waterfallayout.presenter;
 
 import com.msisuzney.tv.waterfallayout.R;
-import com.msisuzney.tv.waterfallayout.leanback.ItemAlignmentFacet;
 import com.msisuzney.tv.waterfallayout.leanback.Presenter;
 import com.msisuzney.tv.waterfallayout.leanback.PresenterSelector;
+import com.msisuzney.tv.waterfallayout.model.ColumnLayoutCollection;
+import com.msisuzney.tv.waterfallayout.model.ColumnLayoutItem;
+import com.msisuzney.tv.waterfallayout.view.ColumnLayout;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 
-import com.msisuzney.tv.waterfallayout.model.AbsoluteLayoutCollection;
-import com.msisuzney.tv.waterfallayout.model.AbsoluteLayoutItem;
-
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author: chenxin
- * @date: 2019-12-20
- * @email: chenxin7930@qq.com
- */
-class AbsoluteLayoutRowPresenter extends Presenter {
+
+class ColumnLayoutRowPresenter extends Presenter {
     private PresenterSelector blockPresenterSelector;
 
 
-    public AbsoluteLayoutRowPresenter(PresenterSelector blockPresenterSelector) {
+    ColumnLayoutRowPresenter(PresenterSelector blockPresenterSelector) {
         this.blockPresenterSelector = blockPresenterSelector;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
-        View view = new AbsoluteLayout(parent.getContext());
+        View view = new ColumnLayout(parent.getContext());
         return new ColumnViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
-        AbsoluteLayoutCollection collection = (AbsoluteLayoutCollection) item;
+        ColumnLayoutCollection collection = (ColumnLayoutCollection) item;
         ColumnViewHolder columnViewHolder = (ColumnViewHolder) viewHolder;
         AbsoluteLayout parentView = columnViewHolder.getAbsoluteLayout();
         ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(collection.getWidth(), collection.getHeight());
         parentView.setLayoutParams(lp);
 
-        List<AbsoluteLayoutItem> items = collection.getItems();
+
+        List<ColumnLayoutItem> items = collection.getItems();
         if (items != null) {
-            for (AbsoluteLayoutItem layoutItem : items) {
-                Presenter presenter = blockPresenterSelector.getPresenter(layoutItem.getBean());
+            for (ColumnLayoutItem layoutItem : items) {
+                Presenter presenter = blockPresenterSelector.getPresenter(layoutItem.getData());
                 if (presenter != null) {
                     ViewHolder vh = presenter.onCreateViewHolder(parentView);
-                    vh.view.setTag(R.id.lb_view_data_tag, layoutItem.getBean());
+                    vh.view.setTag(R.id.lb_view_data_tag, layoutItem.getData());
                     vh.view.setTag(R.id.lb_view_holder_tag, vh);
-                    presenter.onBindViewHolder(vh, layoutItem.getBean());
+                    presenter.onBindViewHolder(vh, layoutItem.getData());
                     AbsoluteLayout.LayoutParams layoutParams = new AbsoluteLayout.LayoutParams(layoutItem.getWidth(),
                             layoutItem.getHeight(), layoutItem.getX(), layoutItem.getY());
                     parentView.addView(vh.view, layoutParams);
-
                 }
             }
         }

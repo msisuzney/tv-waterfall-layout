@@ -4,7 +4,7 @@ package com.msisuzney.tv.waterfallayout.model;
  * @date: 2019-12-20
  * @email: chenxin7930@qq.com
  */
-public final class AbsoluteLayoutItem extends Item {
+public final class ColumnLayoutItem extends Item {
 
     //位置和宽高
     private int x, y, width, height;

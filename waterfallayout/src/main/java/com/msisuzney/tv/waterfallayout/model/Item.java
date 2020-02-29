@@ -7,14 +7,14 @@ package com.msisuzney.tv.waterfallayout.model;
  */
 public abstract class Item {
 
-    //具体的数据类型以及数据
-    private Object bean;
+    //具体的数据
+    private Object data;
 
-    public Object getBean() {
-        return bean;
+    public Object getData() {
+        return data;
     }
 
-    public void setBean(Object bean) {
-        this.bean = bean;
+    public void setData(Object data) {
+        this.data = data;
     }
 }
