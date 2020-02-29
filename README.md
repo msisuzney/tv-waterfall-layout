@@ -43,7 +43,7 @@ allprojects {
 //2) module build.gradle
 dependencies {
     //add lib
-    implementation 'com.github.msisuzney:tv-waterfall-layout:1.0.0'
+    implementation 'com.github.msisuzney:tv-waterfall-layout:1.0.1'
 }
 ```
 1. 继承`RowsFragment`
