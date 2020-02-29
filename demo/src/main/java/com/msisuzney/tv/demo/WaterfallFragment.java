@@ -6,13 +6,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.msisuzney.tv.demo.bean.ColumnFocusStateBean;
 import com.msisuzney.tv.demo.bean.FooterBean;
-import com.msisuzney.tv.demo.bean.StateBean;
+import com.msisuzney.tv.demo.bean.RecyclerViewStateBean;
 import com.msisuzney.tv.demo.bean.TabBean;
 import com.msisuzney.tv.demo.bean.TitleBean;
-import com.msisuzney.tv.demo.lbpresenter.ColumnItemViewFactory;
-import com.msisuzney.tv.demo.lbpresenter.FooterViewPresenter;
-import com.msisuzney.tv.demo.lbpresenter.TitlePresenter;
+import com.msisuzney.tv.demo.viewfactory.ColumnItemViewFactory;
+import com.msisuzney.tv.demo.viewfactory.presenter.FooterViewPresenter;
+import com.msisuzney.tv.demo.viewfactory.presenter.TitlePresenter;
 import com.msisuzney.tv.waterfallayout.leanback.Presenter;
 import com.msisuzney.tv.waterfallayout.leanback.PresenterSelector;
 
@@ -124,8 +125,9 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
     }
 
     private void updateData(TabBean tabBean) {
-        //TabBean中的位置大小只是比例，需要把TabBean转换成实际像素
-
+        /**
+         1.演示按照屏幕宽度作为固定的尺寸，计算栏目中所有View的实际像素宽高。TabBean中宽高的是比例
+         */
         List<Object> rows = new ArrayList<>();
         for (int i = 0; i < tabBean.getResult().size(); i++) {
             TabBean.ResultBean tabColumn = tabBean.getResult().get(i);
@@ -175,18 +177,48 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
                 rows.add(cLayoutCollection);
             }
         }
-        //以下添加一个栏目，这个栏目中只有一个View，这个View演示监听布局的状态
+        /**
+         2.  演示栏目中的View监听布局的状态
+         */
+
         ColumnLayoutCollection c2Collection = new ColumnLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, 200);
         List<ColumnLayoutItem> items = new ArrayList<>();
         ColumnLayoutItem item = new ColumnLayoutItem();
         item.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         item.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        item.setData(new StateBean());
+        item.setData(new RecyclerViewStateBean());
         items.add(item);
         c2Collection.setItems(items);
         rows.add(6, new TitleBean("栏目中的View监听状态"));
         rows.add(7, c2Collection);
 
+        /**
+         3. 演示栏目中的View监听栏目是否获得焦点
+         */
+
+        List<ColumnLayoutItem> myitems = new ArrayList<>();
+        //普通View
+        ColumnLayoutItem normalItem = new ColumnLayoutItem();
+        normalItem.setHeight(200);
+        normalItem.setX(700);
+        normalItem.setY(0);
+        normalItem.setWidth(400);
+        normalItem.setData(new TabBean.ResultBean.AbsLayoutListBean());
+        myitems.add(normalItem);
+
+        //ColumnFocusChangeListenerTextView
+        ColumnLayoutItem myitem = new ColumnLayoutItem();
+        myitem.setX(100);
+        myitem.setY(30);
+        myitem.setHeight(100);
+        myitem.setWidth(500);
+        myitem.setData(new ColumnFocusStateBean());
+        myitems.add(myitem);
+
+        ColumnLayoutCollection c3Collection = new ColumnLayoutCollection(ViewGroup.LayoutParams.MATCH_PARENT, 200);
+        c3Collection.setItems(myitems);
+        rows.add(8, new TitleBean("栏目中的View监听栏目的焦点状态"));
+        rows.add(9, c3Collection);
 
 
         postRefreshRunnable(() -> {
@@ -197,6 +229,7 @@ public class WaterfallFragment extends RowsFragment implements OnItemKeyListener
             }
         });
     }
+
 
     private static class LoadDataAsyncTask extends AsyncTask<InputStream, Void, TabBean> {
 

@@ -1,11 +1,11 @@
-package com.msisuzney.tv.demo.lbpresenter;
+package com.msisuzney.tv.demo.viewfactory.presenter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.msisuzney.tv.demo.MyStateChangeObservable;
 import com.msisuzney.tv.demo.R;
-import com.msisuzney.tv.demo.bean.StateBean;
+import com.msisuzney.tv.demo.bean.RecyclerViewStateBean;
 import com.msisuzney.tv.demo.view.StateTextView;
 import com.msisuzney.tv.waterfallayout.leanback.Presenter;
 
@@ -29,7 +29,7 @@ public class StateTextViewPresenter extends Presenter {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
-        if (item instanceof StateBean) {
+        if (item instanceof RecyclerViewStateBean) {
             StateTextView stateTextView = (StateTextView) viewHolder.view;
             if (stateChangeObservable != null) {
                 stateChangeObservable.registerObserver(stateTextView);

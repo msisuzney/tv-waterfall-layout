@@ -40,11 +40,11 @@ public class ColumnLayout extends AbsoluteLayout implements ViewTreeObserver.OnG
         registeredFocusChangedViews.clear();
     }
 
-    public void addColumnFocusChangeListener(ColumnFocusChangeListener childView) {
+    void addColumnFocusChangeListener(ColumnFocusChangeListener childView) {
         registeredFocusChangedViews.add(childView);
     }
 
-    public void removeColumnFocusChangeListener(ColumnFocusChangeListener childView) {
+    void removeColumnFocusChangeListener(ColumnFocusChangeListener childView) {
         registeredFocusChangedViews.remove(childView);
     }
 

@@ -1,4 +1,4 @@
-package com.msisuzney.tv.demo.lbpresenter;
+package com.msisuzney.tv.demo.viewfactory.presenter;
 
 import com.msisuzney.tv.demo.R;
 import com.msisuzney.tv.demo.bean.TitleBean;

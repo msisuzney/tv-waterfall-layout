@@ -1,4 +1,4 @@
-package com.msisuzney.tv.demo.lbpresenter;
+package com.msisuzney.tv.demo.viewfactory.presenter;
 
 import android.graphics.Color;
 
