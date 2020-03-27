@@ -3156,9 +3156,15 @@ final class GridLayoutManager extends RecyclerView.LayoutManager {
                     }
                 }
             } else {
-                View view = findViewByPosition(mFocusPosition);
-                if (view != null) {
-                    view.addFocusables(views, direction, focusableMode);
+//                View view = findViewByPosition(mFocusPosition);
+//                if (view != null) {
+//                    view.addFocusables(views, direction, focusableMode);
+//                }
+                for (int i = 0, count = getChildCount(); i < count; i++) {
+                    View child = getChildAt(i);
+                    if (child.getVisibility() == View.VISIBLE) {
+                        child.addFocusables(views, direction, focusableMode);
+                    }
                 }
             }
             // if still cannot find any, fall through and add itself
